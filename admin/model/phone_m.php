@@ -115,7 +115,18 @@
 			}
 		}
 
-
+		public function getUSER($username,$password)
+		{
+		 $sql="SELECT * FROM user WHERE "."Email = '$username' and password = '$password' ";
+		$result = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+        $data = [];
+        if ($result) {
+            while ($num = mysqli_fetch_assoc($result)) {
+                $data[] = $num;
+            }
+        }
+        return $data;
+		}
 	}
 
 	

@@ -83,7 +83,8 @@
 					if (isset($_GET['id_phone'])) {
 						$id = (int)$_GET['id_phone'];
 						$this->phone->del_phone($id);
-						$_SEESION['noti_del'] = 1;
+						$_SESSION['noti_del'] = 1;
+						header('Location:../index.php?method=listphone');
 					}
 					break;
 				case 'detail_phone':
