@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<h3 align="center">THÔNG SỐ MÁY <?php echo $rs['Name']; ?></h3>
+	<h3 align="center">THÔNG SỐ MÁY <?php if(isset($rs['Name'])){echo $rs['Name'];}  ?></h3>
 	<div class="col-6" style="float: left;">
 		<table class="table table-hover table-inverse">
 			<thead>
@@ -66,11 +66,11 @@
 			HÌNH ẢNH SẢN PHẨM <br>
 			<?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $rs['Image'] ).'"/>';  ?>
 		</div><br>
-		<div >
-			<button type="button" class="btn alert-success">Thêm thông tin chi tiết</button>
-		</div><br>
-		<button type="button" class="btn alert-danger">Sửa thông tin chi tiết</button>
-		<a onclick="return confirm('Bạn có muốn xóa hay không?')" href="#">
+		<a href="index.php?method=update_detailPhone&id_phone=<?php echo $row['Phone_id'] ?>">
+			<button type="button" class="btn alert-danger">Update thông tin chi tiết sản phẩm</button>
+		</a>
+		<br><br>
+		<a style="display: none"onclick="return confirm('Bạn có muốn xóa hay không?')" href="index.php?method=del_detailphone&id_phone=<?php echo $row['Phone_id'] ?>">
 			<button type="button" class="btn btn-warning">Xóa chi tiết sản phẩm</button>
 		</a>
 	</div>

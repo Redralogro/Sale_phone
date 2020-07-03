@@ -7,14 +7,14 @@
 		</fieldset>
 		<fieldset class="form-group">
 			<label for="exampleInputName">Hình ảnh hiện taị</label>
-			
+			<div><?php echo '<img style="width: 200px"  src="data:image/jpeg;base64,'.base64_encode( $row['logo'] ).'"/>';  ?></div>
 		</fieldset>
 		<fieldset class="form-group">
 			<label for="logo">Thay Logo hãng</label>
 			<input type="file" class="form-control-file" name="logo" id="logo">
 		</fieldset>
 
-		<button type="submit" class="btn btn-primary">Thêm</button>
+		<button type="submit" name="submit" class="btn btn-primary">Thêm</button>
 		
 	</form>
 </div>

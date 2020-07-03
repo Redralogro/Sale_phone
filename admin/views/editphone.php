@@ -55,10 +55,10 @@
 		</fieldset>
 		<fieldset class="form-group">
 			<label for="logo">Ảnh</label>
-			<input type="file" class="form-control-file" name="img" id="logo">
+			<input type="file" class="form-control-file" name="img" id="logo" required="">
 		</fieldset>
 
-		<button type="submit" class="btn btn-primary">Thêm</button>
+		<button type="submit" name="submit" class="btn btn-primary">Sửa</button>
 		
 	</form>
 </div>

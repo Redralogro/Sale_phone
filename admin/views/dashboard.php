@@ -193,8 +193,8 @@
             <div class="col-xl-8 col-lg-7 mb-4">
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
-                  <a class="m-0 float-right btn btn-danger btn-sm" href="#">View More <i
+                  <h6 class="m-0 font-weight-bold text-primary">Đơn hàng</h6>
+                  <a class="m-0 float-right btn btn-danger btn-sm" href="index.php?method=orderPhone">View More <i
                       class="fas fa-chevron-right"></i></a>
                 </div>
                 <div class="table-responsive">

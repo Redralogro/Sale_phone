@@ -15,7 +15,7 @@
 			?>
 				<tr>
 					<td><?php echo $value['Firm_name']; ?></td>
-					<td><?php echo $value['logo']; ?></td>
+					<td ><?php echo '<img style="width: 200px"  src="data:image/jpeg;base64,'.base64_encode( $value['logo'] ).'"/>';  ?></td>
 					<td>
 	                        
 	                        <a href="index.php?method=editfirm&id_firm=<?php echo $value['Firm_id']?>">

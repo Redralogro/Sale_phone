@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1>Danh sách điện thoại</h1>
+    <h1>Danh sách điện thoại</h1><a href="index.php?method=addphone"><button class="btn btn-success" type="button">THÊM MỚI</button></a>
     <?php
         if (isset($_SEESION['noti_del'])) {
            echo 'hihi';
@@ -59,15 +59,9 @@
                     </td>
                     <td><?php echo $value['Name']; ?></td>
                     <td>
-                        <div class="dropdown open" style="float: left; margin-right: 4px">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Chọn
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <a href="index.php?method=addphone"><button class="dropdown-item" type="button">THÊM</button></a>
-                                <a href="index.php?method=editphone&id_phone=<?php echo $value['Phone_id'] ?>"><button class="dropdown-item" type="button">SỬA</button></a>
-                            </div>
-                        </div>
+                        
+                        
+                        <a href="index.php?method=editphone&id_phone=<?php echo $value['Phone_id'] ?>"><button class="btn btn-warning" type="button">SỬA</button></a>
                         <a onclick="return confirm('Bạn có muốn xóa hay không?')" href="index.php?method=del_phone&id_phone=<?php echo $value['Phone_id'] ?>">
                             <button type="button" class="btn btn-warning">Xóa</button>
                         </a>

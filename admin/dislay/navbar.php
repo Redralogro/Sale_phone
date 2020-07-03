@@ -35,8 +35,7 @@
         <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">ĐƠN HÀNG</h6>
-            <a class="collapse-item" href="form_basics.html">Đơn hàng</a>
-            <a class="collapse-item" href="form_advanceds.html">Chi tiết đơn hàng</a>
+            <a class="collapse-item" href="index.php?method=orderPhone">Đơn hàng</a>
           </div>
         </div>
       </li>
@@ -46,6 +45,13 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span>
         </a>
+        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Tables</h6>
+            <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
+            <a class="collapse-item" href="datatables.html">DataTables</a>
+          </div>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="ui-colors.html">

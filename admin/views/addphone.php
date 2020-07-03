@@ -52,7 +52,7 @@
 			<input type="file" class="form-control-file" name="img" id="logo">
 		</fieldset>
 
-		<button type="submit" class="btn btn-primary">Thêm</button>
+		<button type="submit" name="submit" class="btn btn-primary">Thêm</button>
 		
 	</form>
 </div>
