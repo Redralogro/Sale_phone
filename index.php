@@ -44,7 +44,7 @@
    
     <!-- End site branding area -->
 
-    <div class="mainmenu-area">
+    <!-- <div class="mainmenu-area">
         <div class="container">
             <div class="row">
                 <div class="navbar-header">
@@ -57,50 +57,47 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.php?page=home">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li class="active" ><a href="index.php?page=home">Home</a></li>
+                        <li><a href="index.php?page=shop">Shop page</a></li>
+                        <li><a href="index.php?page=single-product">Single product</a></li>
+                        <li ><a href="index.php?page=cart">Cart</a></li>
+                        <li><a href="index.php?page=checkout">Checkout</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- End mainmenu area -->
 
-<?php 
-if (isset($_GET['page'])) {
-    $page = $_GET['page'];
-} else {
-    $page = 'home';
-}
+                    <?php 
+                    if (isset($_GET['page'])) {
+                        $page = $_GET['page'];
+                    } else {
+                        $page = 'home';
+                    }
 
-switch ($page) {
-    case 'home':
-        include_once './views/home.php';
-        break;
-    case 'Product':
-        include_once './modules/category/admin.php';
-        break;
+                    switch ($page) {
+                        case 'home':
+                            include_once './views/home.php';
+                            break;
+                        case 'shop':
+                            include_once './views/shop.php';
+                            break;
 
-    case 'add_product':
-        include_once './modules/category/add_product.php';
-        break;
-    case 'edit_product':
-        include_once './modules/category/edit_product.php';
-        break;
-    case 'delete_product':
-        include_once './modules/category/delete_product.php';
-        break;
-    default:
-        # code...
-        break;
-}
-?>
+                        case 'single-product':
+                            include_once './views/single-product.php';
+                            break;
+                        case 'cart':
+                            include_once './views/cart.php';
+                            break;
+                        case 'checkout':
+                            include_once './views/checkout.php';
+                            break;
+                        default:
+                            # code...
+                            break;
+                    }
+                    ?>
 
     <?php 
    include_once './Layout/footer.php';
