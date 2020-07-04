@@ -1,3 +1,14 @@
+<?php 
+
+include_once './config/Connect.php';
+ob_start();
+
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 'home';
+}
+?>
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -41,62 +52,35 @@
     <?php include_once './Layout/header.php' ?>
     <!-- End header area -->
 
-   
-    <!-- End site branding area -->
+                  
+                     <?php 
+                    // switch ($page) {
+                    //     case 'home':
+                    //         include_once './views/home.php';
+                    //         break;
+                    //     case 'shop':
+                    //         include_once './views/shop.php';
+                    //         break;
 
-    <!-- <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active" ><a href="index.php?page=home">Home</a></li>
-                        <li><a href="index.php?page=shop">Shop page</a></li>
-                        <li><a href="index.php?page=single-product">Single product</a></li>
-                        <li ><a href="index.php?page=cart">Cart</a></li>
-                        <li><a href="index.php?page=checkout">Checkout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- End mainmenu area -->
+                    //     case 'single-product':
+                    //         include_once './views/single-product.php';
+                    //         break;
+                    //     case 'cart':
+                    //         include_once './views/cart.php';
+                    //         break;
+                    //     case 'checkout':
+                    //         include_once './views/checkout.php';
+                    //         break;
+                    //     default:
+                    //         # code...
+                    //         break;
+                    // }
 
-                    <?php 
-                    if (isset($_GET['page'])) {
-                        $page = $_GET['page'];
-                    } else {
-                        $page = 'home';
-                    }
-
-                    switch ($page) {
-                        case 'home':
-                            include_once './views/home.php';
-                            break;
-                        case 'shop':
-                            include_once './views/shop.php';
-                            break;
-
-                        case 'single-product':
-                            include_once './views/single-product.php';
-                            break;
-                        case 'cart':
-                            include_once './views/cart.php';
-                            break;
-                        case 'checkout':
-                            include_once './views/checkout.php';
-                            break;
-                        default:
-                            # code...
-                            break;
-                    }
+                    if (file_exists('views/'.$page.'.php')) {
+                        include_once 'views/'.$page.'.php';
+                     }else{
+                        header("Location: ./404/index.php");
+                     }
                     ?>
 
     <?php 

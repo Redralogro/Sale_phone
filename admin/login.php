@@ -19,7 +19,7 @@ unset($_SESSION['error_login']);
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="img/logo/logo.png" rel="icon">
-    <title>RuangAdmin - Login</title>
+    <title>Admin - Login</title>
     <link href="public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="public/css/ruang-admin.min.css" rel="stylesheet">
