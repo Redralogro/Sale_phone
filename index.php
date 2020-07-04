@@ -1,8 +1,7 @@
 <?php 
-
-include_once './config/Connect.php';
 ob_start();
-
+include_once './model/database.php';
+$db= new Database();
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {

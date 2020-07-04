@@ -17,17 +17,19 @@
     <div class="site-branding-area">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="logo">
                         <h1>
                             <a href="./"><img src="./public/img/logo.png"></a>
                         </h1>
                     </div>
                 </div>
-
-                <div class="col-sm-6">
+                  <div class="col-sm-4" style="margin-top: 5%; display:block;">
+                      <input type="Text" name="Seacrh" value="" placeholder ="Tìm Kiếm Sản Phẩm ...">
+                  </div>
+                <div class="col-sm-4">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="index.php?page=cart">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 	
 	class Connect
 	{
-		private $localhost = "localhost:3307";
+		private $localhost = "localhost";
 		private $user = "root";
 		private $pass = "";
 		private $db = "phone";	
