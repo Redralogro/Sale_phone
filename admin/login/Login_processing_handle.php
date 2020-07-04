@@ -28,11 +28,12 @@ $db = new phone_m();
                 $_SESSION['username'] = $username;
                 foreach ($result as $row)
                 {
-                    $_SESSION['user']= $row['User_name'];
+                    $_SESSION['user']= $row['Name'];
                 };
                 //redirect dashbroad
                 // header('Location: ../Admin_control/index.php');
-                header('Location: ./index.php');
+				header('Location: ./index.php');
+				
 			}
 		}
 	}

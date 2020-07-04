@@ -95,7 +95,7 @@ if (isset($_GET['page'])) {
 
     <!-- jQuery sticky menu -->
     <script src="./public/js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
+    <script src="./public/js/jquery.sticky.js"></script>
 
     <!-- jQuery easing -->
     <script src="./public/js/jquery.easing.1.3.min.js"></script>

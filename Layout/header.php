@@ -24,9 +24,12 @@
                         </h1>
                     </div>
                 </div>
+                  <form action="" method="get">
                   <div class="col-sm-4" style="margin-top: 5%; display:block;">
                       <input type="Text" name="Seacrh" value="" placeholder ="Tìm Kiếm Sản Phẩm ...">
+                      <i class="fa fa-search" aria-hidden="true"></i>
                   </div>
+                  </form>
                 <div class="col-sm-4">
                     <div class="shopping-item">
                         <a href="index.php?page=cart">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
