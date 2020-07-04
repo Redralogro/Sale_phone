@@ -61,12 +61,12 @@
                     <td>
                         
                         
-                        <a href="index.php?method=editphone&id_phone=<?php echo $value['Phone_id'] ?>"><button class="btn btn-warning" type="button">SỬA</button></a>
+                        <a href="index.php?method=editphone&id_phone=<?php echo $value['Phone_id'] ?>"><button class="btn btn-info" type="button"><i class="fa fa-edit"></i>SỬA</button></a>
                         <a onclick="return confirm('Bạn có muốn xóa hay không?')" href="index.php?method=del_phone&id_phone=<?php echo $value['Phone_id'] ?>">
-                            <button type="button" class="btn btn-warning">Xóa</button>
+                            <button type="button" class="btn btn-warning"><i class="fa fa-eye"></i>Xóa</button>
                         </a>
                         <a href="index.php?method=detail_phone&id_phone=<?php echo $value['Phone_id'] ?>">
-                            <button  type="button" class="btn btn-danger">Chi tiết</button>
+                            <button  type="button" class="btn btn-danger"><i class="fa fa-remove"></i>Chi tiết</button>
                         </a>
                         
                     </td>
