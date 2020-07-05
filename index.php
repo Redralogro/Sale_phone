@@ -1,12 +1,30 @@
 <?php 
+session_start();
 ob_start();
 include_once './model/database.php';
+include_once './/Function/function.php';
+
 $db= new Database();
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
     $page = 'home';
 }
+if (isset($_SESSION['noti_cart'])) {
+   if($_SESSION['noti_cart']==1)
+   {
+       echo "<script> alert  ('Đặt hàng thành công')</script>";
+   }
+   else if($_SESSION['noti_cart']==0)
+   {
+    echo "<script> alert  ('Đặt hàng Thất bại')</script>"; 
+   }
+
+}
+else
+{}
+unset($_SESSION['noti_cart']);
+
 ?>
 <!DOCTYPE html>
 <!--

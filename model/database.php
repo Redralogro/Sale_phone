@@ -48,6 +48,16 @@ class Database
         return $data;
 
     }
+    function getPro_Id($id){
+
+		$sql = "SELECT *FROM tbl_product WHERE id = $id";
+		$query = mysqli_query($this->link, $sql);
+		$result = array();
+		$result = mysqli_fetch_array($query);
+
+		return $result;
+	}
+
 }
 
 ?>
