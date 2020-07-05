@@ -1,6 +1,7 @@
 <?php 
-session_start();
 ob_start();
+session_start();
+include_once './config/Connect.php';
 include_once './model/database.php';
 include_once './/Function/function.php';
 

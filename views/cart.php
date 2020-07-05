@@ -51,28 +51,28 @@
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Products</h2>
                         <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                            <img src="./public/img/product-thumb-1.jpg" class="recent-thumb" alt="">
                             <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$800.00</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                            <img src="./public/img/product-thumb-1.jpg" class="recent-thumb" alt="">
                             <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$800.00</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                            <img src="./public/img/product-thumb-1.jpg" class="recent-thumb" alt="">
                             <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$800.00</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                            <img src="./public/img/product-thumb-1.jpg" class="recent-thumb" alt="">
                             <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$800.00</del>
@@ -91,7 +91,10 @@
                         </ul>
                     </div>
                 </div>
-                
+                  <?php 
+                  if (isset($_SESSION['phone_cart']) && !empty($_SESSION['phone_cart'])) {
+                   
+                  ?>
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
@@ -108,33 +111,46 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php  
+						$_SESSION['phone_total_price'] = 0;
+						foreach ($_SESSION['phone_cart'] as $id => $product) {
+                           
+                    
+                           
+					?>
                                         <tr class="cart_item">
                                             <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="#">×</a> 
+                                                <a title="Remove this item" class="remove" href="./views/Cart_method/Delete_cart.php?id_item=<?php echo $product['Phone_id']?>" onclick="return confirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?')">×</a> 
                                             </td>
 
                                             <td class="product-thumbnail">
-                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
+                                                <a href="index.php?page=single-product"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="./public/img/product-thumb-2.jpg"></a>
                                             </td>
 
                                             <td class="product-name">
-                                                <a href="single-product.html">Ship Your Idea</a> 
+                                                <a href="index.php?page=single-product"><?php echo $product['Name'];?></a> 
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">£15.00</span> 
+                                                <span class="amount"><?php echo number_format( $product['Price'])?> Đ</span> 
                                             </td>
 
                                             <td class="product-quantity">
                                                 <div class="quantity buttons_added">
                                                     <input type="button" class="minus" value="-">
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">
+                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="<?php echo $product['qty']?>" min="0" step="1">
                                                     <input type="button" class="plus" value="+">
                                                 </div>
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <span class="amount">£15.00</span> 
+                                                <span class="amount">
+                                                <?php  
+											$sum_price = $product['Price'] * $product['qty'];
+											$_SESSION['phone_total_price'] += $sum_price;
+											echo number_format($sum_price);
+										?>
+                                                </span> 
                                             </td>
                                         </tr>
                                         <tr>
@@ -148,6 +164,7 @@
                                                 <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
                                             </td>
                                         </tr>
+                                    <?php }?>
                                     </tbody>
                                 </table>
                             </form>
@@ -475,6 +492,21 @@
                         </div>                        
                     </div>                    
                 </div>
+                    <?php
+                    }else{
+                    ?>
+                    <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Thông báo!</strong> Giỏ hàng của bạn đang trống
+                    <a href="index.php">
+                        <button class="btn btn-success">Quay lại</button>
+                    </a>
+                    </div>
+                  <?php 
+                   }
+                  // unset($_SESSION['phone_cart']);
+                   ?>
+                   
             </div>
         </div>
     </div>
