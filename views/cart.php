@@ -22,7 +22,7 @@
         </div>
 </div>
 
-<div class="product-big-title-area">
+    <div class="product-big-title-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -80,16 +80,6 @@
                         </div>
                     </div>
                     
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Recent Posts</h2>
-                        <ul>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                        </ul>
-                    </div>
                 </div>
                   <?php 
                   if (isset($_SESSION['phone_cart']) && !empty($_SESSION['phone_cart'])) {
@@ -112,12 +102,10 @@
                                     </thead>
                                     <tbody>
                                     <?php  
-						$_SESSION['phone_total_price'] = 0;
-						foreach ($_SESSION['phone_cart'] as $id => $product) {
-                           
-                    
-                           
-					?>
+                                        $_SESSION['phone_total_price'] = 0;
+                                        $count=0;
+                                        foreach ($_SESSION['phone_cart'] as $id => $product) {
+                                    ?>
                                         <tr class="cart_item">
                                             <td class="product-remove">
                                                 <a title="Remove this item" class="remove" href="./views/Cart_method/Delete_cart.php?id_item=<?php echo $product['Phone_id']?>" onclick="return confirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?')">×</a> 
@@ -144,15 +132,20 @@
                                             <td class="product-subtotal">
                                                 <span class="amount">
                                                 <?php  
-											$sum_price = $product['Price'] * $product['qty'];
-											$_SESSION['phone_total_price'] += $sum_price;
-											echo number_format($sum_price);
-										?>
+                                                    $sum_price = $product['Price'] * $product['qty'];
+                                                    $_SESSION['phone_total_price'] += $sum_price;
+
+                                                    echo number_format($sum_price);
+                                                    $count+= $product['qty'];
+										        ?>
                                                 </span> 
                                             </td>
                                         </tr>
                                         
-                                    <?php }?>
+                                    <?php }
+                                    $_SESSION['number_phone']=$count;
+                                    
+                                    ?>
                                     <tr>
                                             <td class="actions" colspan="6">
                                                 <div class="coupon" style="margin-left: 7%;">
@@ -172,7 +165,7 @@
                     <?php
                     }else{
                     ?>
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger col-sm-8">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <strong>Thông báo!</strong> Giỏ hàng của bạn đang trống
                     <a href="index.php">

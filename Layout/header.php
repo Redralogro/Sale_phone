@@ -32,7 +32,7 @@
                   </form>
                 <div class="col-sm-4">
                     <div class="shopping-item">
-                        <a href="index.php?page=cart">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="index.php?page=cart">Cart <i class="fa fa-shopping-cart"></i> <span class="product-count"><?php echo $_SESSION['number_phone'];?></span></a>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <h1>Danh sách điện thoại</h1><a href="index.php?method=addphone"><button class="btn btn-success" type="button">THÊM MỚI</button></a>
     <?php
-        if (isset($_SEESION['noti_del'])) {
+        if (isset($_SESSION['noti_del'])) {
            echo 'hihi';
-           unset($_SEESION['noti_del']);
+           unset($_SESSION['noti_del']);
         }
     ?>
     <table class="table table-bordered table-hover">
