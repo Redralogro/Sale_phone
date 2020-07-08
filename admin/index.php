@@ -4,8 +4,6 @@
   ob_start();
   if (!isset($_SESSION['username'])) {
       header('Location: ./login.php');
-      //$_SESSION['error_login']="Đừng có mà vớ vẩn";
-      // unset($_SESSION['error_login']);
   }
 
  

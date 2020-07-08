@@ -39,56 +39,15 @@
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Search Products</h2>
-                        <form action="#">
-                            <input type="text" placeholder="Search products...">
-                            <input type="submit" value="Search">
-                        </form>
-                    </div>
-                    
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src="./public/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="./public/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="./public/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="./public/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                    </div>
-                    
-                </div>
+
                   <?php 
                   if (isset($_SESSION['phone_cart']) && !empty($_SESSION['phone_cart'])) {
                    
                   ?>
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="product-content-right">
                         <div class="woocommerce" id="table-x">
-                            <form method="post" action="#">
+                            <form method="post" action="index.php?page=checkout">
                                 <table cellspacing="0" class="shop_table cart" id="table-data">
                                     <thead>
                                         <tr>
@@ -101,7 +60,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php  
+                                    <?php 
+                                         $_SESSION['number_phone'] =0;
                                         $_SESSION['phone_total_price'] = 0;
                                         $count=0;
                                         foreach ($_SESSION['phone_cart'] as $id => $product) {
@@ -153,7 +113,7 @@
                                                     <span class="alert alert-info"><?php echo number_format($_SESSION['phone_total_price']) ." Đ"; ?></span>
                                                 </div>
                                                 <input type="submit" value="Update Cart" name="update_cart" class="button" style="margin-left: 10%;">
-                                                <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward" style="float:right;">
+                                                <input type="submit" value="Checkout" name="checkout" class="checkout-button button alt wc-forward" style="float:right;">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -169,10 +129,12 @@
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <strong>Thông báo!</strong> Giỏ hàng của bạn đang trống
                     <a href="index.php">
-                        <button class="btn btn-success">Quay lại</button>
+                        <button class="btn btn-info">Quay lại</button>
                     </a>
                     </div>
                   <?php 
+                  unset  ($_SESSION['number_phone']);
+                   $_SESSION['phone_total_price']=0;
                    }
                   // unset($_SESSION['phone_cart']);
                    ?>

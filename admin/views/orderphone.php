@@ -1,4 +1,44 @@
 <div class="container-fluid">
+	<h3>Đơn hàng</h3>
+	<?php
+		if (isset($_SESSION['notiUpdateOrderPhone'])) {
+		  	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Sửa thành công.
+		  </div>";
+		  	unset($_SESSION['notiUpdateOrderPhone']);
+		 } 
+
+		if (isset($_SESSION['notiOK'])) {
+		  	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Giao hàng thành công.
+		  </div>";
+		  	unset($_SESSION['notiOK']);
+		 } 
+
+
+		if (isset($_SESSION['notiComfirm'])) {
+		  	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Đã xác nhận đơn hàng.
+		  </div>";
+		  	unset($_SESSION['notiComfirm']);
+		 }  
+
+
+		 if (isset($_SESSION['notiCancel'])) {
+		  	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Hủy đơn hàng thành công.
+		  </div>";
+		  	unset($_SESSION['notiCancel']);
+		 }  
+
+		
+
+		  
+	?>
 	<table class="table table-hover table-inverse">
 		<thead>
 			<tr>
@@ -59,7 +99,7 @@
 						<?php
 							}elseif ($value['Status_id'] != 3 || $value['Status_id'] != 4 ) {
 						?>
-							<a href="#">
+							<a href="index.php?method=editOrderPhone&id_OrderPhone=<?php echo $value['Order_id'] ?>">
 								<button class="btn btn-primary">Sửa</button>
 							</a>
 							<a onclick="return comfirm('Bạn có muốn hủy đơn hàng này không?')" href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=Cancel">

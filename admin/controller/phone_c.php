@@ -21,6 +21,9 @@
 
 			switch ($method) {
 				case 'dashboard':
+					$rs = $this->phone->get_TOP5_ORDER();
+					$CUSTOMER = $this->phone->get_Customer();
+					$STATUS = $this->phone->get_status();
 					include_once 'views/dashboard.php';
 					break;
 				case 'listphone':
@@ -38,7 +41,7 @@
 					if (isset($_GET['id_firm'])) {
 						$id = $_GET['id_firm'];
 						if ($this->phone->del_firm($id) == 1) {
-							echo "<script>alert('Xóa thành công')</script>";
+							$_SESSION['NotidelFirm'] = 1;
 							header("Location: index.php?method=listfirm");
 						}else{
 							echo "<script>alert('Xóa thất bại')</script>";
@@ -50,9 +53,12 @@
 				case 'addfirm':
 					if (isset($_POST['submit'])) {
 						$name = $_POST['name'];
-						$img = base64_encode(file_get_contents($_FILES['logo']['tmp_name']));
-						if ($this->phone->addFirm($name, $img) == 1) {
-							echo "<script>alert('Thêm thành công')</script>";
+						$img = $_FILES["logo"];
+						$nameFile = $this->phone->changeTitle($_FILES["logo"]["name"]);
+						$tmpFile = $_FILES["logo"]["tmp_name"];
+						move_uploaded_file($tmpFile, "public/img/logo/".$nameFile);
+						if ($this->phone->addFirm($name, $nameFile) == 1) {
+							$_SESSION['NotiaddFirm']= 1;
 							header("Location: index.php?method=listfirm");
 						}else{
 							echo "<script>alert('Thêm thất bại')</script>";
@@ -68,10 +74,13 @@
 						$row = $this->phone->get_Firm_ID($id);
 
 						if (isset($_POST['submit'])) {
-							$Firm_name = $_POST['name'];
-							$logo = base64_encode(file_get_contents($_FILES['logo']['tmp_name']));
-							if ($this->phone->editFirm($id, $Firm_name,$logo) == 1) {
-								
+							$name = $_POST['name'];
+							$img = $_FILES["logo"];
+							$nameFile = $this->phone->changeTitle($_FILES["logo"]["name"]);
+							$tmpFile = $_FILES["logo"]["tmp_name"];
+							move_uploaded_file($tmpFile, "public/img/logo/".$nameFile);
+							if ($this->phone->editFirm($id, $name,$nameFile) == 1) {
+								$_SESSION['NotieditFirm']= 1;
 								header("Location: index.php?method=listfirm");
 								
 							}else{
@@ -93,10 +102,13 @@
 						$Color_id = $_POST['color'];
 						$Memory_id = $_POST['ram'];
 						$Firm_id = $_POST['firm'];
-						$Image = base64_encode(file_get_contents($_FILES['img']['tmp_name']));
-						// $this->phone->addPhone($Name, $Price, $Color_id, $Image, $Memory_id, $Firm_id);
-						if ($this->phone->addPhone($Name, $Price, $Color_id, $Image, $Memory_id, $Firm_id) == 1) {
-							echo "<script>alert('Thêm thành công')</script>";
+						$img = $_FILES["logo"];
+						$nameFile = $this->phone->changeTitle($_FILES["logo"]["name"]);
+						$tmpFile = $_FILES["logo"]["tmp_name"];
+						move_uploaded_file($tmpFile, "public/img/phone/".$nameFile);
+						
+						if ($this->phone->addPhone($Name, $Price, $Color_id, $nameFile, $Memory_id, $Firm_id) == 1) {
+							$_SESSION['NotiaddPhone']= 1;
 							header("Location: index.php?method=listphone");
 						}else{
 							echo "<script>alert('Thêm thất bại')</script>";
@@ -118,9 +130,12 @@
 							$Color_id = $_POST['color'];
 							$Memory_id = $_POST['ram'];
 							$Firm_id = $_POST['firm'];
-							$Image = base64_encode(file_get_contents($_FILES['img']['tmp_name']));
-							if ($this->phone->editPhone($id, $Name, $Price, $Color_id, $Image, $Memory_id, $Firm_id) == 1) {
-								echo "<script>alert('Sửa thành công')</script>";
+							$img = $_FILES["logo"];
+							$nameFile = $this->phone->changeTitle($_FILES["logo"]["name"]);
+							$tmpFile = $_FILES["logo"]["tmp_name"];
+							move_uploaded_file($tmpFile, "public/img/phone/".$nameFile);
+							if ($this->phone->editPhone($id, $Name, $Price, $Color_id, $nameFile, $Memory_id, $Firm_id) == 1) {
+								$_SESSION['NotieditPhone']= 1;
 								header("Location: index.php?method=listphone");
 							}else{
 								echo "<script>alert('Sửa thất bại')</script>";
@@ -136,6 +151,7 @@
 						$id = (int)$_GET['id_phone'];
 
 						if ($this->phone->del_phone($id) == 1) {
+							$_SESSION['NotidelPhone']= 1;
 							header("Location: index.php?method=listphone");
 						}else{
 							echo "<script>alert('Lỗi không xóa được')</script>";
@@ -181,7 +197,7 @@
 							$Promotion_price =$_POST['Promotion_price'];
 							$this->phone->Update_detailPhone($id, $Description, $Quatity,$Size,$Weight,$Os,$Cpu_speed,$Camera_primary,$Bettery,$Warranty,$Bluetooth,$Wlan,$Promotion_price);
 							if ($this->phone->Update_detailPhone($id, $Description, $Quatity,$Size,$Weight,$Os,$Cpu_speed,$Camera_primary,$Bettery,$Warranty,$Bluetooth,$Wlan,$Promotion_price)==1) {
-								echo "<script>alert('Update thành công')</script>";
+								$_SESSION['NotiUpdateDetailPhone']= 1;
 								header("Location: index.php?method=detail_phone&id_phone=$id");
 
 							}else{
@@ -209,19 +225,22 @@
 							switch ($action) {
 								case 'OK':
 									if ($this->phone->ComfirmOrder($id, 3) == 1) {
-										echo "<script>alert('Đã giao')</script>";
+										$_SESSION['notiOK'] = 1;
+										header("Location: index.php?method=orderPhone");
 									}
 									
 									break;
 								case 'Comfirm':
 									if ($this->phone->ComfirmOrder($id, 2) == 1) {
-											echo "<script>alert('Đã xác nhận đơn hàng')</script>";
+											$_SESSION['notiComfirm'] = 1;
+											header("Location: index.php?method=orderPhone");
 										}
 									
 									break;
 								case 'Cancel':
 									if ($this->phone->ComfirmOrder($id, 4) == 1) {
-											echo "<script>alert('Hủy thành công')</script>";
+											$_SESSION['notiCancel'] = 1;
+											header("Location: index.php?method=orderPhone");
 										}
 									
 									break;
@@ -231,7 +250,28 @@
 							}
 						}
 					}
-					break;
+				break;
+
+				case 'editOrderPhone':
+
+					if (isset($_GET['id_OrderPhone'])) {
+						$id = $_GET['id_OrderPhone'];
+						$row = $this->phone->get_order_id($id);
+						if (isset($_POST['OK'])) {
+							$Delivery_addres = $_POST['Delivery_addres'];
+							$Note = $_POST['Note'];
+
+							if ($this->phone->update_OrderPhone($id, $Delivery_addres, $Note) == 1) {
+								$_SESSION['notiUpdateOrderPhone'] = 1;
+								header('Location: index.php?method=orderPhone');
+ 							}
+						}
+						
+
+					}
+					include_once 'views/editOrderPhone.php';
+				break;
+
 				case 'detail_order':
 					
 					if (isset($_GET['id_Order'])) {

@@ -21,7 +21,7 @@ $db = new phone_m();
             $result=$db->getUSER($username,$password);
             
 			if (empty($result)) {
-				echo "tên đăng nhập hoặc mật khẩu không đúng !";
+				echo "<script>alert('Tài khoản hoặc mật khẩu không chính xác!')</script>";
 			}
 			else{
 				//tiến hành lưu tên đăng nhập vào session để tiện xử lý sau này

@@ -24,4 +24,27 @@ function getPro_Id($id){
     return $result;
 }
 
+// Lấy thông tin khách hàng đặt hàng
+function addMember($name, $phone,$email){
+    global $conn;
+
+    $sql = "INSERT INTO customer(Customer_name, Customer_phone,  Customer_email) VALUES('$name', '$phone', '$email')";
+    $query = mysqli_query($conn, $sql);
+}
+
+// Insert đơn hàng khách hàng đặt
+function addOrder($id_member, $note){
+    global $conn;
+
+    $sql = "INSERT INTO order_phone(Customer_id, Note) VALUES($id_member, '$note')";
+    $query = mysqli_query($conn, $sql);
+}
+
+// Lấy thông tin sản phẩm khách hàng muốn mua đưa vào detail order
+function addPro_order($id_order, $id_product, $quantity, $price){
+    global $conn;
+    
+    $sql = "INSERT INTO order_detail(Order_id,Phone_id, Sale_quantity, Price) VALUES($id_order, $id_product, $quantity, $price)";
+    $query = mysqli_query($conn, $sql);
+}
 ?>

@@ -1,11 +1,33 @@
 <div class="container-fluid">
-    <h1>Danh sách điện thoại</h1><a href="index.php?method=addphone"><button class="btn btn-success" type="button">THÊM MỚI</button></a>
     <?php
-        if (isset($_SESSION['noti_del'])) {
-           echo 'hihi';
-           unset($_SESSION['noti_del']);
+        if (isset($_SESSION['NotiaddPhone'])) {
+            echo "<div class='alert alert-info'>
+            <a class='close' data-dismiss='alert'>&times;</a>
+            <strong>Nhắc nhở!</strong> Thêm thành công.
+          </div>";
+            unset($_SESSION['NotiaddPhone']);
+         }  
+
+        if (isset($_SESSION['NotieditPhone'])) {
+            echo "<div class='alert alert-info'>
+            <a class='close' data-dismiss='alert'>&times;</a>
+            <strong>Nhắc nhở!</strong> Sửa thành công.
+          </div>";
+            unset($_SESSION['NotieditPhone']);
         }
+
+        if (isset($_SESSION['NotidelPhone'])) {
+            echo "<div class='alert alert-info'>
+            <a class='close' data-dismiss='alert'>&times;</a>
+            <strong>Nhắc nhở!</strong> Xóa thành công.
+          </div>";
+            unset($_SESSION['NotidelPhone']);
+        }
+
+          
     ?>
+    <h1>Danh sách điện thoại</h1><a href="index.php?method=addphone"><button class="btn btn-success" type="button">THÊM MỚI</button></a>
+    
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -63,10 +85,10 @@
                         
                         <a href="index.php?method=editphone&id_phone=<?php echo $value['Phone_id'] ?>"><button class="btn btn-info" type="button"><i class="fa fa-edit"></i>SỬA</button></a>
                         <a onclick="return confirm('Bạn có muốn xóa hay không?')" href="index.php?method=del_phone&id_phone=<?php echo $value['Phone_id'] ?>">
-                            <button type="button" class="btn btn-warning"><i class="fa fa-eye"></i>Xóa</button>
+                            <button type="button" class="btn btn-warning"><i class="fa fa-times"></i>Xóa</button>
                         </a>
                         <a href="index.php?method=detail_phone&id_phone=<?php echo $value['Phone_id'] ?>">
-                            <button  type="button" class="btn btn-danger"><i class="fa fa-remove"></i>Chi tiết</button>
+                            <button  type="button" class="btn btn-danger"><i class="fa fa-eye"></i>Chi tiết</button>
                         </a>
                         
                     </td>

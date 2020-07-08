@@ -1,5 +1,32 @@
 
 <div class="container-fluid">
+	<?php
+		if (isset($_SESSION['NotiaddFirm'])) {
+		  	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Thêm thành công.
+		  </div>";
+		  	unset($_SESSION['NotiaddFirm']);
+		 }  
+
+		if (isset($_SESSION['NotieditFirm'])) {
+		 	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Sửa thành công.
+		  </div>";
+		  	unset($_SESSION['NotieditFirm']);
+		}
+
+		if (isset($_SESSION['NotidelFirm'])) {
+		 	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Xóa thành công.
+		  </div>";
+		  	unset($_SESSION['NotidelFirm']);
+		}
+
+		  
+	?>
 	<h3 >Danh Sách Hãng điện thoại</h3>
 	<table class="table table-sm table-inverse table-hover">
 		<thead>
@@ -15,7 +42,7 @@
 			?>
 				<tr>
 					<td><?php echo $value['Firm_name']; ?></td>
-					<td ><?php echo '<img style="width: 200px"  src="data:image/jpeg;base64,'.base64_encode( $value['logo'] ).'"/>';  ?></td>
+					<td ><img style="width: 200px"  src="public/img/logo/<?php echo  $value['Logo'] ?>"></td>
 					<td>
 	                        
 	                        <a href="index.php?method=editfirm&id_firm=<?php echo $value['Firm_id']?>">

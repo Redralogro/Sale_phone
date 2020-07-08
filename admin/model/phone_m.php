@@ -92,9 +92,9 @@
 			}
 		}
 
-		public function addPhone($Name, $Price, $Color_id, $Image, $Memory_id, $Firm_id)
+		public function addPhone($Name, $Price, $Color_id, $nameFile, $Memory_id, $Firm_id)
 		{
-			$sql = "INSERT INTO phones(Name, Price, Color_id, Image, Memory_id, Firm_id) values('$Name', '$Price', '$Color_id', '$Image', '$Memory_id', '$Firm_id')";
+			$sql = "INSERT INTO phones(Name, Price, Color_id, Image, Memory_id, Firm_id) values('$Name', '$Price', '$Color_id', '$nameFile', '$Memory_id', '$Firm_id')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				$last_id = mysqli_insert_id($this->conn);
@@ -109,13 +109,13 @@
 			
 		}
 
-		public function editPhone($id, $Name, $Price, $Color_id, $Image, $Memory_id, $Firm_id)
+		public function editPhone($id, $Name, $Price, $Color_id, $nameFile, $Memory_id, $Firm_id)
 		{
 			$sql = "UPDATE phones SET 
 											Name = '$Name',
 											Price = '$Price',
 											Color_id = $Color_id, 
-											Image = '$Image', 
+											Image = '$nameFile', 
 											Memory_id = $Memory_id, 
 											Firm_id = $Firm_id
 											WHERE Phone_id = $id";
@@ -184,8 +184,8 @@
 			$sql = "DELETE FROM phones WHERE Firm_id = $id";
 			$query = mysqli_query($this->conn, $sql);
 			$sql1 = "DELETE FROM firm WHERE Firm_id = $id";
-			$query = mysqli_query($this->conn, $sql1);
-			if ($query) {
+			$query1 = mysqli_query($this->conn, $sql1);
+			if ($query1) {
 				return 1;
 			}
 			else{
@@ -193,9 +193,9 @@
 			}
 		}
 
-		public function addFirm($name, $img)
+		public function addFirm($name, $nameFile)
 		{
-			$sql = "INSERT INTO firm(Firm_name, logo) values('$name', '$img')";
+			$sql = "INSERT INTO firm(Firm_name, logo) values('$name', '$nameFile')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return 1;
@@ -205,9 +205,9 @@
 			}
 		}
 
-		public function editFirm($id, $Firm_name,$logo)
+		public function editFirm($id, $name,$nameFile)
 		{
-			$sql = "UPDATE firm set Firm_name = '$Firm_name', logo = '$logo' where Firm_id = $id";
+			$sql = "UPDATE firm set Firm_name = '$name', logo = '$nameFile' where Firm_id = $id";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return 1;
@@ -313,6 +313,58 @@
 			}else{
 				return 0;
 			}
+		}
+
+		public function get_TOP5_ORDER()
+		{
+			$sql = "SELECT  *FROM order_phone order by Order_id DESC LIMIT 5";
+			$query = mysqli_query($this->conn, $sql);
+			$result = array();
+
+			while ($row =  mysqli_fetch_array($query)) {
+				$result[] = $row;
+			}
+
+			return $result;
+		}
+
+		public function update_OrderPhone($id, $Delivery_addres, $Note)
+		{
+			$sql = "UPDATE order_phone SET Delivery_addres = '$Delivery_addres', Note = '$Note' WHERE Order_id = $id";
+			$query = mysqli_query($this->conn, $sql);
+			if ($query) {
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+
+
+		public function changeTitle($str){
+		  if(!$str) return false;
+		  $unicode = array(
+		        'a'=>'á|à|ả|ã|ạ|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ',
+		        'A'=>'Á|À|Ả|Ã|Ạ|Ă|Ắ|Ằ|Ẳ|Ẵ|Ặ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ',
+		        'd'=>'đ',
+		        'D'=>'Đ',
+		        'e'=>'é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ',
+		        'E'=>'É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ',
+		        'i'=>'í|ì|ỉ|ĩ|ị',
+		        'I'=>'Í|Ì|Ỉ|Ĩ|Ị',
+		        'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ',
+		        'O'=>'Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
+		        'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự',
+		        'U'=>'Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
+		        'y'=>'ý|ỳ|ỷ|ỹ|ỵ',
+		        'Y'=>'Ý|Ỳ|Ỷ|Ỹ|Ỵ',
+		        '' =>'?|(|)|[|]|{|}|#|%|-|–|<|>|,|:|;|.|&|"|“|”|/',
+		        '-'=>' '
+		  );
+		  foreach($unicode as $khongdau=>$codau) {
+		     $arr=explode("|",$codau);
+		     $str = str_replace($arr,$khongdau,$str);
+		  }
+		  return $str;
 		}
 	}
 

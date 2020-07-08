@@ -1,4 +1,13 @@
 <div class="container-fluid">
+	<?php
+		if (isset($_SESSION['NotiUpdateDetailPhone'])) {
+		  	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Thêm thành công.
+		  </div>";
+		  	unset($_SESSION['NotiUpdateDetailPhone']);
+		 }    
+	?>
 	<h3 align="center">THÔNG SỐ MÁY <?php if(isset($rs['Name'])){echo $rs['Name'];}  ?></h3>
 	<div class="col-6" style="float: left;">
 		<table class="table table-hover table-inverse">
@@ -63,12 +72,16 @@
 	</div>
 	<div class="col-6" style="float: left;">
 		<div>
-			HÌNH ẢNH SẢN PHẨM <br>
-			<?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $rs['Image'] ).'"/>';  ?>
+			<h6>HÌNH ẢNH SẢN PHẨM 	</h6>
+			
+			<img style="width: 450px"  src="public/img/phone/<?php echo  $rs['Image'] ?>">
 		</div><br>
 		<a href="index.php?method=update_detailPhone&id_phone=<?php echo $row['Phone_id'] ?>">
 			<button type="button" class="btn alert-danger">Update thông tin chi tiết sản phẩm</button>
 		</a>
+
+		<a href="index.php?method=listphone">
+			<button type="button" class="btn btn-success">Quay lại danh sách sản phẩm</button> </a>
 		<br><br>
 		<a style="display: none"onclick="return confirm('Bạn có muốn xóa hay không?')" href="index.php?method=del_detailphone&id_phone=<?php echo $row['Phone_id'] ?>">
 			<button type="button" class="btn btn-warning">Xóa chi tiết sản phẩm</button>

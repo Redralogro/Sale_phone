@@ -54,8 +54,10 @@
 			</select>
 		</fieldset>
 		<fieldset class="form-group">
-			<label for="logo">Ảnh</label>
-			<input type="file" class="form-control-file" name="img" id="logo" required="">
+			<label for="logo">Ảnh hiện tại</label><br>
+			<img style="width: 200px"  src="public/img/phone/<?php echo $phones['Image'] ?>"><br>
+			<label for="logo">Thay ảnh</label>
+			<input type="file" class="form-control-file" name="logo" id="logo" required="">
 		</fieldset>
 
 		<button type="submit" name="submit" class="btn btn-primary">Sửa</button>
