@@ -15,12 +15,15 @@ if (isset($_GET['id_item'])) {
         if (!isset($_SESSION['phone_cart']) && empty($_SESSION['phone_cart'])) {
             $_SESSION['phone_cart'][$id_pro ] = $product;
             $_SESSION['phone_cart'][$id_pro ]['qty'] = 1;
+            $_SESSION['number_phone'] +=1;
         }else{
             if (array_key_exists($id_pro , $_SESSION['phone_cart'])) {
                 $_SESSION['phone_cart'][$id_pro ]['qty'] += 1;
+                $_SESSION['number_phone'] +=1;
             }else{
                 $_SESSION['phone_cart'][$id_pro ] = $product;
                 $_SESSION['phone_cart'][$id_pro ]['qty'] = 1;
+                $_SESSION['number_phone'] +=1;
             }
         }
         $_SESSION['noti_cart'] = 1;

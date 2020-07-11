@@ -37,7 +37,7 @@ unset($_SESSION['error_login']);
                             <div class="col-lg-12">
                                 <div class="login-form">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Admin Login</h1>
                                     </div>
                                     <form class="user" method="post" action="login.php">
                                         <div class="form-group">

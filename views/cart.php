@@ -61,7 +61,7 @@
                                     </thead>
                                     <tbody>
                                     <?php 
-                                         $_SESSION['number_phone'] =0;
+                                         
                                         $_SESSION['phone_total_price'] = 0;
                                         $count=0;
                                         foreach ($_SESSION['phone_cart'] as $id => $product) {

@@ -1,6 +1,7 @@
 <?php 
 
 $result = $db->getAllData('phones');
+$detail=$db->execute('SELECT Phone_id,Promotion_price FROM detail_phones');
 ?>
 
 <div class="mainmenu-area">
@@ -120,14 +121,22 @@ $result = $db->getAllData('phones');
                                             foreach ($result as $row)
                                             {
                                             ?>  
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-3 col-sm-6 ">
                                     <div class="single-shop-product">
                                         <div class="product-upper">
-                                            <a href="index.php?page=single-product&id=<?php echo  $row['Phone_id']?>"><img src="./public/img/product-2.jpg" alt="Điện thoại đẹp"></a>
+                                            <a href="index.php?page=single-product&id=<?php echo  $row['Phone_id']?>"><img style="height:300px;" src="admin/public/img/phone/<?php echo  $row['Image'] ?>" alt="Điện thoại đẹp"></a>
                                         </div>
                                         <h2><a href=""><?php echo $row['Name'] ?></a></h2>
                                         <div class="product-carousel-price">
-                                            <ins><?php echo $row['Price'] ?></ins> <del>$999.00</del>
+                    
+                                            <ins><?php echo $row['Price'] ?></ins> <del>
+                                                <?php
+                                             foreach ($detail as $key => $value) {
+                                                if ($value['Phone_id'] == $row['Phone_id']) {
+                                                    echo $value['Promotion_price'];
+                                                }
+                                             }
+                                            ?></del>
                                         </div>  
                                         
                                         <div class="product-option-shop">

@@ -241,9 +241,45 @@
 									break;
 								case 'Comfirm':
 									if ($this->phone->ComfirmOrder($id, 2) == 1) {
+										// Tiến hành gửi email cho khách
+										include_once '../PHPMailer/class.phpmailer.php';
+										include_once '../PHPMailer/class.smtp.php';
+										include_once '../PHPMailer/Message.php';
+										$email=$_GET['email'];
+										$name=$_GET['name'];
+										// Instantiation and passing `true` enables exceptions
+										$mail = new PHPMailer(true);
+											try {
+												//Server settings
+												$mail->SMTPDebug = 2;                      // Enable verbose debug output
+												$mail->CharSet = "UTF-8";
+												$mail->isSMTP();                                            // Send using SMTP
+												$mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+												$mail->SMTPAuth   = true;                                   // Enable SMTP 
+									
+												$mail->Username   = 'redralogro@gmail.com';                     // SMTP username
+												$mail->Password   = '26091999';  // SMTP password
+												$mail->SMTPSecure = 'tls';         // Enable TLS encryption; 
+												$mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+									
+												//Recipients
+												$mail->setFrom('support@ustora.com', 'Thông báo đơn hàng mới');
+												$mail->addAddress($email, $name);     // Add a recipient
+									
+												// Content
+												$mail->isHTML(true);                                  // Set email format to HTML
+												$mail->Subject = 'Thông báo đơn hàng mới';
+												$mail->Body    = $message	;
+									
+												$mail->send();
+												echo 'Message has been sent';
+											} catch (Exception $e) {
+												echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+											}
+
 											$_SESSION['notiComfirm'] = 1;
 											header("Location: index.php?method=orderPhone");
-										}
+									}
 									
 									break;
 								case 'Cancel':

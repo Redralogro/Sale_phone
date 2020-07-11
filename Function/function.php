@@ -47,10 +47,10 @@ function addMember($name, $phone,$email){
 }
 
 // Insert đơn hàng khách hàng đặt
-function addOrder($Customer_id, $deliverer_id,$total,$addres,$note,$pawws){
+function addOrder($Customer_id, $deliverer_id,$today,$total,$addres,$note,$pawws){
     global $conn;
 
-    $sql = "INSERT INTO order_phone(Customer_id,Status_id,Deliverer_id,Total_price,Delivery_addres ,Note,password) VALUES('$Customer_id','1',' $deliverer_id','$total','$addres','$note','$pawws')";
+    $sql = "INSERT INTO order_phone(Customer_id,Status_id,Create_date,Deliverer_id,Total_price,Delivery_addres ,Note,password) VALUES('$Customer_id','1',' $deliverer_id','$today','$total','$addres','$note','$pawws')";
     $query = mysqli_query($conn, $sql);
 }
 

@@ -64,6 +64,7 @@
 					<td><?php foreach ($customer as $key => $value1) {
 						if ($value1['Customer_id'] == $value['Customer_id']) {
 							echo $value1['Customer_name'];
+							$email=$value1['Customer_email'];
 						}
 					}  ?></td>
 					<td><?php echo $value['Create_date']; ?></td>
@@ -112,7 +113,7 @@
 						<?php
 							if ($value['Status_id'] == 1) {
 						?>
-								<a onclick="return comfirm('Bạn có muốn xác nhận đơn hàng này không?')" href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=Comfirm">
+								<a onclick="return comfirm('Bạn có muốn xác nhận đơn hàng này không?')" href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=Comfirm&name=<?php echo  $value1['Customer_name'];?>&email=<?php echo $email?>">
 									<button class="btn btn-success">Xác nhận đơn hàng</button>
 								</a>
 						<?php

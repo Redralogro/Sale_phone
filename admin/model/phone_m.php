@@ -446,7 +446,7 @@
 
 		public function CountOrder($month, $year)
 		{
-			$sql = "SELECT COUNT(Order_id) FROM order_phone WHERE Create_date BETWEEN '$year-$month-01' AND '$year-$month-31'";
+			$sql = "SELECT COUNT(Order_id) FROM order_phone WHERE Create_date LIKE '$year-$month-%' AND Status_id=3";
 			$query = mysqli_query($this->conn, $sql);
 			$count = mysqli_fetch_array($query);
 			return $count;
@@ -454,7 +454,7 @@
 
 		public function CountTotal_Price($month, $year)
 		{
-			$sql = "SELECT SUM(Total_price) FROM order_phone WHERE Create_date BETWEEN '$year-$month-01' AND '$year-$month-31'";
+			$sql = "SELECT SUM(Total_price) FROM order_phone WHERE Create_date LIKE '$year-$month-%' AND Status_id=3";
 			$query = mysqli_query($this->conn, $sql);
 			$count = mysqli_fetch_array($query);
 			return $count;
