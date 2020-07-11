@@ -43,12 +43,21 @@
 					<th>Sản phẩm</th>
 					<td><?php 
 						foreach ($PHONE as $key => $value1) {
-								if ($ODERDETAIL['Phone_id'] ==$value1['Phone_id']) {
-									echo $value1['Name'];
+								if ($ODERDETAIL['Phone_id'] == $value1['Phone_id']) {
+									//echo $value1['Name'];
+									echo $ODERDETAIL['Order_id'];
 								}	
 							}
 					 ?></td>
 				<tr>
+				<tr>
+					<th>Số lượng mua</th>
+					<td>
+						<?php
+							echo $ODERDETAIL['Sale_quantity'];
+						?>
+					</td>
+				</tr>
 				<tr>
 					<th>Giá sản phẩm</th>
 					<td><?php echo $ODERDETAIL['Price']; ?></td>

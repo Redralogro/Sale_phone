@@ -138,6 +138,18 @@
 			return $row;
 		}
 
+		public function Getdetail_phone()
+		{
+			$sql = "SELECT * FROM detail_phones ";
+			$query = mysqli_query($this->conn, $sql);
+			$result = array();
+			while ($row =  mysqli_fetch_array($query)) {
+				$result[] = $row;
+			}
+
+			return $result;
+		}
+
 		//Đếm số hàng trả ra
 		public function detail_phone_rows($id)
 		{
@@ -230,6 +242,28 @@
         	return $data;
 		}
 
+		public function getUser1()
+		{
+			$sql="SELECT * FROM user";
+			$query = mysqli_query($this->conn, $sql);
+			$result = array();
+
+			while ($row =  mysqli_fetch_array($query)) {
+				$result[] = $row;
+			}
+
+			return $result;
+		}
+
+
+		public function getUserID($id)
+		{
+			$sql="SELECT * FROM user WHERE User_id = $id";
+			$query = mysqli_query($this->conn, $sql);
+			$row =  mysqli_fetch_array($query);
+			return $row;
+		}
+
 		public function get_order()
 		{
         	$sql = "SELECT *FROM order_phone";
@@ -252,13 +286,25 @@
 
 		}
 
+		public function getOrder_detail()
+		{
+			$sql = "SELECT *FROM order_detail";
+			$query = mysqli_query($this->conn, $sql);
+			while ($row =  mysqli_fetch_array($query)) {
+				$result[] = $row;
+			}
+
+			return $result;
+		}
+
 		public function get_order_detail_id($id)
 		{
-			$sql = "SELECT *FROM order_detail where Order_detail_id = $id";
+			$sql = "SELECT *FROM order_detail where Order_id = $id";
 			$query = mysqli_query($this->conn, $sql);
 			$row = mysqli_fetch_array($query);
 			return $row;
 		}
+
 
 		public function get_Customer()
 		{
@@ -366,6 +412,63 @@
 		  }
 		  return $str;
 		}
+
+		//Check định dạng mail
+		public function is_email($str) {
+		    return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+		}
+
+		public function is_name($fullname)
+		{
+			return (!preg_match("/^[a-zA-Z ]*$/",$fullname)) ? FALSE : TRUE;
+		}
+
+		// function isVietnamesePhoneNumber($number) {
+		// 	return (!preg_match("/((09|03|07|08|05)+([0-9]{8})\b)/g",$number)) ? FALSE : TRUE;
+		  
+		// }
+
+		public function checkPass($password)
+		{
+			$uppercase = preg_match('@[A-Z]@', $password);
+			$lowercase = preg_match('@[a-z]@', $password);
+			$number    = preg_match('@[0-9]@', $password);
+			$specialChars = preg_match('@[^\w]@', $password);
+
+			if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+			   return false;
+			}else{
+			    return true;
+			}
+		}
+
+		
+
+		public function CountOrder($month, $year)
+		{
+			$sql = "SELECT COUNT(Order_id) FROM order_phone WHERE Create_date BETWEEN '$year-$month-01' AND '$year-$month-31'";
+			$query = mysqli_query($this->conn, $sql);
+			$count = mysqli_fetch_array($query);
+			return $count;
+		}
+
+		public function CountTotal_Price($month, $year)
+		{
+			$sql = "SELECT SUM(Total_price) FROM order_phone WHERE Create_date BETWEEN '$year-$month-01' AND '$year-$month-31'";
+			$query = mysqli_query($this->conn, $sql);
+			$count = mysqli_fetch_array($query);
+			return $count;
+		}
+
+		public function CountCustomer()
+		{
+			$sql = "SELECT COUNT(customer_id) FROM customer ";
+			$query = mysqli_query($this->conn, $sql);
+			$count = mysqli_fetch_array($query);
+			return $count;
+		}
+
+		
 	}
 
 

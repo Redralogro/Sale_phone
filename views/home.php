@@ -123,7 +123,7 @@ $result = $db->getAllData('phones');
                                 <div class="col-md-3 col-sm-6">
                                     <div class="single-shop-product">
                                         <div class="product-upper">
-                                            <img src="./public/img/product-2.jpg" alt="">
+                                            <a href="index.php?page=single-product&id=<?php echo  $row['Phone_id']?>"><img src="./public/img/product-2.jpg" alt="Điện thoại đẹp"></a>
                                         </div>
                                         <h2><a href=""><?php echo $row['Name'] ?></a></h2>
                                         <div class="product-carousel-price">

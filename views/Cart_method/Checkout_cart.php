@@ -26,7 +26,6 @@ $db= new Database();
 		foreach ($_SESSION['phone_cart'] as $id => $product) {
 			addPro_order($Order_id, $product['Phone_id'],  $product['Price'],$product['qty']);
 		}
-
 		// Tiến hành gửi email cho khách
 		include_once '../../PHPMailer/class.phpmailer.php';
 		include_once '../../PHPMailer/class.smtp.php';

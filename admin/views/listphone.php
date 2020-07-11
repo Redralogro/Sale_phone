@@ -79,13 +79,22 @@
                             }
                         ?>
                     </td>
-                    <td><?php echo $value['Name']; ?></td>
+                    <td>
+                        <?php
+                            foreach ($detailPhone as $key => $vl) {
+                                if ($vl['Phone_id'] == $value['Phone_id']) {
+                                    echo $vl['Quatity'];
+                                }
+                            }
+                        ?>
+                            
+                    </td>
                     <td>
                         
                         
                         <a href="index.php?method=editphone&id_phone=<?php echo $value['Phone_id'] ?>"><button class="btn btn-info" type="button"><i class="fa fa-edit"></i>SỬA</button></a>
                         <a onclick="return confirm('Bạn có muốn xóa hay không?')" href="index.php?method=del_phone&id_phone=<?php echo $value['Phone_id'] ?>">
-                            <button type="button" class="btn btn-warning"><i class="fa fa-times"></i>Xóa</button>
+                            <button type="button" class="btn btn-warning"><i class="fa fa-times"></i> Xóa</button>
                         </a>
                         <a href="index.php?method=detail_phone&id_phone=<?php echo $value['Phone_id'] ?>">
                             <button  type="button" class="btn btn-danger"><i class="fa fa-eye"></i>Chi tiết</button>

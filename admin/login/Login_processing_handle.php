@@ -27,8 +27,11 @@ $db = new phone_m();
 				//tiến hành lưu tên đăng nhập vào session để tiện xử lý sau này
                 $_SESSION['username'] = $username;
                 foreach ($result as $row)
-                {
+                {	
+                	$_SESSION['user_id']= $row['User_id'];
+                	$_SESSION['status1']= $row['status'];
                     $_SESSION['user']= $row['Name'];
+
                 };
                 //redirect dashbroad
                 // header('Location: ../Admin_control/index.php');

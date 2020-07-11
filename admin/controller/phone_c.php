@@ -21,12 +21,19 @@
 
 			switch ($method) {
 				case 'dashboard':
+					$month = date('m');
+					$date = getdate();
+					$year = $date['year'];
+					$countCustomer = $this->phone->CountCustomer();
+					$countPrice = $this->phone->CountTotal_Price($month, $year);
+					$countOrder = $this->phone->CountOrder($month, $year); 
 					$rs = $this->phone->get_TOP5_ORDER();
 					$CUSTOMER = $this->phone->get_Customer();
 					$STATUS = $this->phone->get_status();
 					include_once 'views/dashboard.php';
 					break;
 				case 'listphone':
+					$detailPhone = $this->phone->Getdetail_phone();
 					$rs_phone = $this->phone->get_Phone();
 					$rs_Color = $this->phone->get_Color();
 					$rs_Firm = $this->phone->get_Firm();
@@ -93,6 +100,7 @@
 					include_once 'views/editFirm.php';
 					break;
 				case 'addphone':
+
 					$color = $this->phone->get_Color();
 					$firm = $this->phone->get_Firm();
 					$ram = $this->phone->get_Memory();
@@ -162,6 +170,7 @@
 				case 'detail_phone':
 					if (isset($_GET['id_phone'])) {
 						$id = (int)$_GET['id_phone'];
+
 						$row = $this->phone->detail_phone($id);
 						$rs = $this->phone->getphone_id($id);
 						$r = $this->phone->detail_phone_rows($id);
@@ -276,7 +285,7 @@
 					
 					if (isset($_GET['id_Order'])) {
 						$id = $_GET['id_Order'];
-
+						$detail_order = $this->phone->getOrder_detail();
 						$ODERPHONE = $this->phone->get_order_id($id);
 						$ODERDETAIL = $this->phone->get_order_detail_id($id);
 						$CUSTOMER = $this->phone->get_Customer();
@@ -285,6 +294,77 @@
 						$deli =$this->phone->get_deliverer();
 					}
 					include_once 'views/detail_order.php';
+				break;
+
+				case 'infoUser':
+					if (isset($_GET['id_User'])) {
+						$id = $_GET['id_User'];
+
+						$rs = $this->phone->getUserID($id);
+					}
+					include_once 'views/infoUser.php';
+					break;
+
+				case 'User':
+					$rs = $this->phone->getUser1();
+					include_once 'views/user.php';
+					break;
+				case 'addUser':
+					if (isset($_POST['submit'])) {
+						$name = $_POST['name'];
+						$phone = $_POST['phone'];
+						$email = $_POST['email'];
+						$pass = $_POST['pass'];
+						$acc = $_POST['acc'];
+						$logo = $_POST['logo'];
+						$rs = $this->phone->getUser1();
+
+						// if ($this->phone->is_name($name)  == false) {
+						// 	$_SESSION['error_name'] = 1;
+						// }
+
+						// if ($this->phone->isVietnamesePhoneNumber($phone) != true) {
+						// 	$_SESSION['error_phone'] = 1;
+						// }
+
+						// foreach ($rs as $key => $value) {
+						// 	if ($value['number_phone'] == $phone) {
+						// 		$_SESSION['error_phone']++;
+						// 	}
+						// }
+
+						// if ($this->phone->is_email($email) == false) {
+						// 	$_SESSION['error_email'] = 1;
+						// }
+						
+						// foreach ($rs as $key => $value) {
+						// 	if ($value['Email'] == $email) {
+						// 		$_SESSION['error_email']++;
+						// 	}
+						// }
+
+						// if ($this->phone->checkPass($pass) != true) {
+						// 	$_SESSION['error_Pass'] = 1;
+						// }
+
+						
+
+
+						// if ($_SESSION['error_phone'] >=1 && $_SESSION['error_name'] >= 1 && $_SESSION['error_email']>=1 && $_SESSION['error_Pass']>=1) {
+						// 	header("Location: index.php?method=User");
+						// }
+						
+						
+						
+
+
+						
+						
+					}
+					include_once 'views/addUser.php';
+					break;
+				case 'editUser':
+					include_once 'views/editUser.php';
 					break;
 				default:
 					# code...

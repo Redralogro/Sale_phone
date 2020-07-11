@@ -14,11 +14,10 @@
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Doanh thu tháng <?php echo date('m'); ?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo number_format($countPrice['0']) ?> VND</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                        <span>Since last month</span>
+                        <span>Tổng số tiền </span>
                       </div>
                     </div>
                     <div class="col-auto">
@@ -34,11 +33,11 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Đơn hàng trong tháng <?php echo date('m'); ?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">  <?php echo $countOrder['0']; ?> </div>
                       <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                        <span>Since last years</span>
+                      
+                        <span>Tổng số đơn đã bán</span>
                       </div>
                     </div>
                     <div class="col-auto">
@@ -54,11 +53,10 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Khách hàng </div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $countCustomer['0']; ?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                        <span>Since last month</span>
+                        <span>Tổng số khách hàng </span>
                       </div>
                     </div>
                     <div class="col-auto">
