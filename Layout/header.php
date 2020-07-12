@@ -4,10 +4,10 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="index.php?page=cart"><i class="fa fa-user"></i> Customer check</a></li>
+                            <li><a href="customer/customer.php"><i class="fa fa-user"></i> Customer Login</a></li>
                             <li><a href="index.php?page=cart"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
                             <li><a href="index.php?page=checkout"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="admin\login.php"><i class="fa fa-university"  aria-hidden="true"></i>Admin Login</a></li>
+                            <li><a href="admin\index.php"><i class="fa fa-university"  aria-hidden="true"></i>Admin Login</a></li>
                         </ul>
                     </div>
                 </div>

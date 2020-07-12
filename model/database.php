@@ -33,6 +33,13 @@ class Database
           }
           return $data;
       }
+      public function detail_phone($id)
+		{
+			$sql = "SELECT * FROM detail_phones WHERE Phone_id = $id";
+			$query = mysqli_query($this->link, $sql);
+			$row = mysqli_fetch_array($query);
+			return $row;
+		}
     public function getAllData($table)
     {
         $sql = "SELECT * FROM {$table}";
@@ -45,6 +52,28 @@ class Database
         }
         return $data;
     }
+    public function getOrder_detail_byID($id)
+		{
+			$sql = "SELECT *FROM order_detail where Order_id = $id";
+			$query = mysqli_query($this->link, $sql);
+			while ($row =  mysqli_fetch_array($query)) {
+				$result[] = $row;
+			}
+
+			return $result;
+        }
+        
+		public function get_order_id($id)
+		{
+        	$sql = "SELECT *FROM order_phone where Order_id = $id";
+			$query = mysqli_query($this->link, $sql);
+			while ($row =  mysqli_fetch_array($query)) {
+				$result[] = $row;
+			}
+
+			return $result;
+
+		}
     public function getdata_where($table, $query)
     {
         $sql = "SELECT * FROM {$table} WHERE ";

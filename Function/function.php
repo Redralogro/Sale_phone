@@ -1,5 +1,5 @@
 <?php 
-$conn = mysqli_connect("localhostlocalhost", "root", "", "phone") or die("Can't connect database!");
+$conn = mysqli_connect("localhost", "root", "", "phone") or die("Can't connect database!");
 function to_slug($str) {
     $str = trim(mb_strtolower($str));
     $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);

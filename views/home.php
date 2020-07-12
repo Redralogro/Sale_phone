@@ -1,7 +1,7 @@
 <?php 
 
-$result = $db->getAllData('phones');
-$detail=$db->execute('SELECT Phone_id,Promotion_price FROM detail_phones');
+// $result = $db->getAllData('phones');
+// $detail=$db->execute('SELECT Phone_id,Promotion_price FROM detail_phones');
 ?>
 
 <div class="mainmenu-area">
@@ -19,7 +19,7 @@ $detail=$db->execute('SELECT Phone_id,Promotion_price FROM detail_phones');
                     <ul class="nav navbar-nav">
                         <li class="active" ><a href="index.php?page=home">Home</a></li>
                         <li><a href="index.php?page=shop">Shop page</a></li>
-                        <li><a href="index.php?page=single-product">Single product</a></li>
+                        <!-- <li><a href="index.php?page=single-product">Single product</a></li> -->
                         <li ><a href="index.php?page=cart">Cart</a></li>
                         <li><a href="index.php?page=checkout">Checkout</a></li>
                     </ul>

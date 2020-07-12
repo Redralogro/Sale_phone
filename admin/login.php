@@ -2,11 +2,11 @@
 session_start();
 
 include_once './login/Login_processing_handle.php';
-if(!empty($_SESSION['error_login']))
-{
-echo $_SESSION['error_login'];
-}
-unset($_SESSION['error_login']);
+// if(!empty($_SESSION['fail']))
+// {
+// echo $_SESSION['fail'];
+// }
+// unset($_SESSION['fail']);
 ?>
 <!DOCTYPE html>
 <html lang="en">

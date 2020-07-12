@@ -3,14 +3,15 @@ ob_start();
 session_start();
 include_once './config/Connect.php';
 include_once './model/database.php';
-include_once './/Function/function.php';
+include_once './Function/function.php';
+
 date_default_timezone_set('UTC');
 $db= new Database();
-if (isset($_GET['page'])) {
-    $page = $_GET['page'];
-} else {
-    $page = 'home';
-}
+// if (isset($_GET['page'])) {
+//     $page = $_GET['page'];
+// } else {
+//     $page = 'home';
+// }
 if (isset($_SESSION['noti_cart'])) {
    if($_SESSION['noti_cart']==1)
    {
@@ -72,33 +73,15 @@ unset($_SESSION['noti_cart']);
 
                   
                      <?php 
-                    // switch ($page) {
-                    //     case 'home':
-                    //         include_once './views/home.php';
-                    //         break;
-                    //     case 'shop':
-                    //         include_once './views/shop.php';
-                    //         break;
+                    include_once './controller/controllers.php';
+                     $utility = new utility();
+                     $utility->bodyItems();
 
-                    //     case 'single-product':
-                    //         include_once './views/single-product.php';
-                    //         break;
-                    //     case 'cart':
-                    //         include_once './views/cart.php';
-                    //         break;
-                    //     case 'checkout':
-                    //         include_once './views/checkout.php';
-                    //         break;
-                    //     default:
-                    //         # code...
-                    //         break;
-                    // }
-
-                    if (file_exists('views/'.$page.'.php')) {
-                        include_once 'views/'.$page.'.php';
-                     }else{
-                        header("Location: ./404/index.php");
-                     }
+                    // if (file_exists('views/'.$page.'.php')) {
+                    //     include_once 'views/'.$page.'.php';
+                    //  }else{
+                    //     header("Location: ./404/index.php");
+                    //  }
                     ?>
 
     <?php 
