@@ -44,8 +44,8 @@
 					<td><?php 
 						foreach ($PHONE as $key => $value1) {
 								if ($ODERDETAIL['Phone_id'] == $value1['Phone_id']) {
-									//echo $value1['Name'];
-									echo $ODERDETAIL['Order_id'];
+									echo $value1['Name'];
+									//echo $ODERDETAIL['Order_id'];
 								}	
 							}
 					 ?></td>

@@ -1,5 +1,5 @@
 <?php 
-$conn = mysqli_connect("localhost", "root", "", "phone") or die("Can't connect database!");
+$conn = mysqli_connect("localhostlocalhost", "root", "", "phone") or die("Can't connect database!");
 function to_slug($str) {
     $str = trim(mb_strtolower($str));
     $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
@@ -50,15 +50,14 @@ function addMember($name, $phone,$email){
 function addOrder($Customer_id, $deliverer_id,$today,$total,$addres,$note,$pawws){
     global $conn;
 
-    $sql = "INSERT INTO order_phone(Customer_id,Status_id,Create_date,Deliverer_id,Total_price,Delivery_addres ,Note,password) VALUES('$Customer_id','1',' $deliverer_id','$today','$total','$addres','$note','$pawws')";
+    $sql = "INSERT INTO order_phone(Customer_id,Status_id,Deliverer_id,Create_date,Total_price,Delivery_addres ,Note,password) VALUES('$Customer_id','1',' $deliverer_id','$today','$total','$addres','$note','$pawws')";
     $query = mysqli_query($conn, $sql);
 }
-
 // Lấy thông tin sản phẩm khách hàng muốn mua đưa vào detail order
 function addPro_order($Order_id, $Phone_id, $price,$quantity){
     global $conn;
     
-    $sql = "INSERT INTO order_detail(Order_id,Phone_id, Price, Sale_quantity) VALUES('$Order_id', '$Phone_id', '$price', '$quantity')";
+    $sql = "INSERT INTO `order_detail` (Order_id,Phone_id, Price, Sale_quantity) VALUES('$Order_id', '$Phone_id', '$price', '$quantity')";
     $query = mysqli_query($conn, $sql);
 }
 ?>

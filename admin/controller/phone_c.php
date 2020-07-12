@@ -226,8 +226,15 @@
 					include_once 'views/orderphone.php';
 					break;
 				case 'ComfirmOrder':
+					
+					//$detail=$this->get_order_detail_id($_GET['id_order']);
 					if (isset($_GET['id_order'])) {
 						$id = $_GET['id_order'];
+						$customer = $this->phone->get_Customer();
+						$Phone = $this->phone->get_Phone();
+						$row = $this->phone->get_order();
+						// $Details = $this->phone->get_order_detail_id($id);
+						$Details = $this->phone->getOrder_detail_byID($id);
 						if (isset($_GET['action'])) {
 							$action = $_GET['action'];
 
@@ -241,6 +248,23 @@
 									break;
 								case 'Comfirm':
 									if ($this->phone->ComfirmOrder($id, 2) == 1) {
+										
+										foreach($row as $key => $value) 
+										{
+                                            if ($value['Order_id'] == $id) {
+												$pws=$value['password'];
+												$addres=$value['Delivery_addres'];
+												$total=$value['Total_price'];
+												foreach ($customer as $key => $cus)
+												{
+													if($cus['Customer_id']== $value['Customer_id'])
+													{
+														$phone_number=$cus['Customer_phone'];
+														$customer_name=$cus['Customer_name'];
+													}
+												}
+                                            }
+										}
 										// Tiến hành gửi email cho khách
 										include_once '../PHPMailer/class.phpmailer.php';
 										include_once '../PHPMailer/class.smtp.php';

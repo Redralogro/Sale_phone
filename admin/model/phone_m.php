@@ -296,6 +296,16 @@
 
 			return $result;
 		}
+		public function getOrder_detail_byID($id)
+		{
+			$sql = "SELECT *FROM order_detail where Order_id = $id";
+			$query = mysqli_query($this->conn, $sql);
+			while ($row =  mysqli_fetch_array($query)) {
+				$result[] = $row;
+			}
+
+			return $result;
+		}
 
 		public function get_order_detail_id($id)
 		{
@@ -304,7 +314,6 @@
 			$row = mysqli_fetch_array($query);
 			return $row;
 		}
-
 
 		public function get_Customer()
 		{

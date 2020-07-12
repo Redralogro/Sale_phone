@@ -4,7 +4,7 @@ session_start();
 include_once './config/Connect.php';
 include_once './model/database.php';
 include_once './/Function/function.php';
-
+date_default_timezone_set('UTC');
 $db= new Database();
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
