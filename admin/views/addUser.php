@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-12">
 			<h3>Thêm tài khoản</h3>
-			<form method="POST">
+			<form method="POST" enctype="multipart/form-data">
 				<fieldset class="form-group">
 					<label for="">Name</label>
 					<input type="text" class="form-control" name="name" id="" placeholder="Nhập tên của bạn..." required="">
@@ -31,8 +31,9 @@
 				</fieldset>
 
 				<fieldset class="form-group">
-					<label for="">Ảnh</label>
-					<input type="file" class="form-control" name="logo" id=""  required="">
+					<label for="user">Ảnh</label>
+					<!-- <input type="file" name="fileUpload" value=""> -->
+					<input type="file" class="form-control" name="user" id="user"  required="" value="">
 				</fieldset>
 				<button type="submit" name="submit" class="btn btn-primary">Thêm</button>
 			</form>

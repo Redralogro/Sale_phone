@@ -39,11 +39,16 @@
 							
 						?></td>
 				<tr>
+				<?php  
+					$i = 0;
+					foreach ($ODERDETAIL as $key => $detail) {
+					$i += 1;
+				?>
 				<tr>
-					<th>Sản phẩm</th>
+					<th>Sản phẩm <?php echo $i ?></th>
 					<td><?php 
 						foreach ($PHONE as $key => $value1) {
-								if ($ODERDETAIL['Phone_id'] == $value1['Phone_id']) {
+								if ($detail['Phone_id'] == $value1['Phone_id']) {
 									echo $value1['Name'];
 									//echo $ODERDETAIL['Order_id'];
 								}	
@@ -54,13 +59,16 @@
 					<th>Số lượng mua</th>
 					<td>
 						<?php
-							echo $ODERDETAIL['Sale_quantity'];
+							echo $detail['Sale_quantity'];
 						?>
 					</td>
 				</tr>
+				<?php
+					}
+				?>
 				<tr>
 					<th>Giá sản phẩm</th>
-					<td><?php echo $ODERDETAIL['Price']; ?></td>
+					<td><?php echo $detail['Price']; ?></td>
 				<tr>
 				<tr>
 					<th>Ngày đặt</th>

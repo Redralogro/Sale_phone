@@ -12,7 +12,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li ><a href="index.php?page=home">Home</a></li>
-                        <li><a href="index.php?page=shop">Shop page</a></li>
+                        <!-- <li><a href="index.php?page=shop">Shop page</a></li> -->
                         <!-- <li><a href="index.php?page=single-product">Single product</a></li> -->
                         <li class="active" ><a href="index.php?page=cart">Cart</a></li>
                         <li><a href="index.php?page=checkout">Checkout</a></li>
@@ -72,7 +72,7 @@
                                             </td>
 
                                             <td class="product-thumbnail">
-                                                <a href="index.php?page=single-product"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="./public/img/product-thumb-2.jpg"></a>
+                                                <a href="index.php?page=single-product"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="./admin/public/img/phone/<?php echo $product['Image']?>"></a>
                                             </td>
 
                                             <td class="product-name">

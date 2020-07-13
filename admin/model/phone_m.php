@@ -228,7 +228,13 @@
 				return 0;
 			}
 		}
-
+		public function deletesql($table, $sql)
+		{
+			$sql = "DELETE FROM {$table} WHERE " . $sql;
+			// _debug($sql);die;
+			mysqli_query($this->conn, $sql) or die(" Lỗi Truy Vấn delete   --- " . mysqli_error($this->conn));
+			return mysqli_affected_rows($this->conn);
+		}
 		public function getUSER($username,$password)
 		{
 		 	$sql="SELECT * FROM user WHERE "."Email = '$username' and password = '$password' ";
@@ -241,7 +247,24 @@
         	}
         	return $data;
 		}
-
+        public function addUSER($Email, $number_phone, $pass, $name, $image, $status)
+		{
+			$sql = "INSERT INTO user(Email, number_phone, Password, Name, Image_user, status) values('$Email', '$number_phone', '$pass', '$name', '$image', '$status')";
+			// $query = mysqli_query($this->conn, $sql);
+			// if ($query) {
+			// 	$last_id = mysqli_insert_id($this->conn);
+			// 	$sql1 = "INSERT INTO user(User_id) values($last_id);";
+			// 	$query1 = mysqli_query($this->conn, $sql1);
+			// 	if ($query1) {
+			// 		return 1;
+			// 	}else{
+			// 		return 0;
+			// 	}
+			// }
+			mysqli_query($this->conn, $sql) or die("Error Query Insert" . mysqli_error($this->conn));
+            return mysqli_insert_id($this->conn);
+			
+		}
 		public function getUser1()
 		{
 			$sql="SELECT * FROM user";
@@ -254,8 +277,19 @@
 
 			return $result;
 		}
-
-
+		function updateUser($id_user,$email,$number_phone,$password,$name,$image,$status)
+		{
+			$sql="UPDATE user
+			SET Email='$email', number_phone='$number_phone',Password= '$password',Name= '$name',Image_user='$image',status='$status'
+			WHERE User_id='$id_user';";
+			$result = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+			return mysqli_affected_rows($this->conn);
+		}
+		public function updateview($sql)
+		{
+			$result = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
+			return mysqli_affected_rows($this->conn);
+		}
 		public function getUserID($id)
 		{
 			$sql="SELECT * FROM user WHERE User_id = $id";
@@ -412,7 +446,7 @@
 		        'U'=>'Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
 		        'y'=>'ý|ỳ|ỷ|ỹ|ỵ',
 		        'Y'=>'Ý|Ỳ|Ỷ|Ỹ|Ỵ',
-		        '' =>'?|(|)|[|]|{|}|#|%|-|–|<|>|,|:|;|.|&|"|“|”|/',
+		        '.' =>'?|(|)|[|]|{|}|#|%|-|–|<|>|,|:|;|.|&|"|“|”|/',
 		        '-'=>' '
 		  );
 		  foreach($unicode as $khongdau=>$codau) {

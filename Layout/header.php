@@ -25,10 +25,12 @@
                         </h1>
                     </div>
                 </div>
-                  <form action="" method="get">
+                  <form action="index.php?page=shop" method="POST">
                   <div class="col-sm-4" style="margin-top: 5%; display:block;">
-                      <input type="Text" name="Seacrh" value="" placeholder ="Tìm Kiếm Sản Phẩm ...">
-                      <i class="fa fa-search" aria-hidden="true"></i>
+                      <div class="row">
+                      <input type="Text" name="Seacrh" placeholder ="Tìm Kiếm Sản Phẩm ...">
+                      <button class="btn btn-primary  mb-2" type="submit" name="submit" ><i class="fa fa-search" aria-hidden="true"></i></button>
+                      </div>
                   </div>
                   </form>
                 <div class="col-sm-4">

@@ -12,7 +12,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li ><a href="index.php?page=home">Home</a></li>
-                        <li ><a href="index.php?page=shop">Shop page</a></li>
+                        <!-- <li ><a href="index.php?page=shop">Shop page</a></li> -->
                         <!-- <li><a href="index.php?page=single-product">Single product</a></li> -->
                         <li ><a href="index.php?page=cart">Cart</a></li>
                         <li  class="active"><a href="index.php?page=checkout">Checkout</a></li>

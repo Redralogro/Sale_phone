@@ -2,20 +2,20 @@
 	<div class="row">
 		<div class="col-12">
 			<h3>Sửa tài khoản</h3>
-			<form method="POST">
+			<form method="POST" enctype="multipart/form-data">
 				<fieldset class="form-group">
 					<label for="">Name</label>
-					<input type="text" class="form-control" name="name" id="" placeholder="Nhập tên của bạn..." required="">
+					<input type="text" class="form-control" value="<?php echo $rs['Name']?>" name="name" id="" placeholder="Nhập tên của bạn..." required="">
 					
 				</fieldset>
 				<fieldset class="form-group">
 					<label for="">Phone</label>
-					<input type="text" class="form-control" name="phone" id="" placeholder="Nhập số điện thoại của bạn..." required="">
+					<input type="text" class="form-control" value="<?php echo $rs['number_phone']?>" name="phone" id="" placeholder="Nhập số điện thoại của bạn..." required="">
 					
 				</fieldset>
 				<fieldset class="form-group">
 					<label for="">Email </label>
-					<input type="email" class="form-control" name="email" id="" placeholder="Enter email..." required="">
+					<input type="email" class="form-control"  value="<?php echo $rs['Email']?>" name="email" id="" placeholder="Enter email..." required="">
 					
 				</fieldset>
 				<fieldset class="form-group">
@@ -24,15 +24,15 @@
 				</fieldset>
 				<fieldset class="form-group">
 					<label for="">Chọn loại tài khoản</label>
-					<select class="form-control" id="" name="acc">
+					<select class="form-control" id="" name="acc" >
 						<option value="1">Tài khoản admin</option>
 						<option value="2">Tài khoản thường</option>
 					</select>
 				</fieldset>
 
 				<fieldset class="form-group">
-					<label for="">Ảnh</label>
-					<input type="file" class="form-control" name="logo" id=""  required="">
+					<label for="user_im">Ảnh</label>
+					<input type="file" class="form-control" name="user_im" id="user_im"  required="" value="">
 				</fieldset>
 				<button type="submit" name="submit" class="btn btn-primary">Thêm</button>
 			</form>

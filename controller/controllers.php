@@ -25,6 +25,13 @@ class utility extends Database
                             include_once 'views/home.php';
                             break;
                         case 'shop':
+                            if(isset($_POST['Seacrh']))
+                            {
+                                $keyword = $_POST['Seacrh'];
+                                $phone = $this->ult->getdata_where('phones','Name LIKE "%'.$keyword.' %"');
+                                $details = $this->ult->getAllData('detail_phones');
+                              
+                            }
                             include_once 'views/shop.php';
                             break;
 

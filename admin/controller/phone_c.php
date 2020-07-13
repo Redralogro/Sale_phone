@@ -347,7 +347,7 @@
 						$id = $_GET['id_Order'];
 						$detail_order = $this->phone->getOrder_detail();
 						$ODERPHONE = $this->phone->get_order_id($id);
-						$ODERDETAIL = $this->phone->get_order_detail_id($id);
+						$ODERDETAIL = $this->phone->getOrder_detail_byID($id);
 						$CUSTOMER = $this->phone->get_Customer();
 						$PHONE = $this->phone->get_Phone();
 						$STATUS = $this->phone->get_status();
@@ -372,13 +372,27 @@
 				case 'addUser':
 					if (isset($_POST['submit'])) {
 						$name = $_POST['name'];
-						$phone = $_POST['phone'];
-						$email = $_POST['email'];
+						$number_phone = $_POST['phone'];
+						$Email = $_POST['email'];
 						$pass = $_POST['pass'];
+						$pass=md5($pass);
 						$acc = $_POST['acc'];
-						$logo = $_POST['logo'];
-						$rs = $this->phone->getUser1();
+						$logo = $_FILES['user']['name'];
+						// echo  $logo;
+						// die();
+						$rs = $this->phone->getUser1();							
+							$nameFile = $this->phone->changeTitle($_FILES["user"]["name"]);
+							$tmpFile = $_FILES["user"]["tmp_name"];
+							move_uploaded_file($tmpFile, "public/img/user/".$nameFile);
 
+							if ($this->phone->addUSER($Email, $number_phone, $pass, $name, $nameFile, $acc) ) {
+								$_SESSION['NotiAddUser']= 1;
+								header("Location: index.php?method=User");
+							}else{
+								echo "<script>alert('Thêm thất bại')</script>";
+							}
+
+						
 						// if ($this->phone->is_name($name)  == false) {
 						// 	$_SESSION['error_name'] = 1;
 						// }
@@ -424,8 +438,95 @@
 					include_once 'views/addUser.php';
 					break;
 				case 'editUser':
+					if(isset($_GET['id_user']))
+					{
+						$id_user = $_GET['id_user'];
+						$rs = $this->phone->getUserID($id_user);
+						if (isset($_POST['submit'])) {
+							$name = $_POST['name'];
+							$number_phone = $_POST['phone'];
+							$Email = $_POST['email'];
+							$pass = $_POST['pass'];
+							$pass=md5($pass);
+							$acc = $_POST['acc'];
+							$logo = $_FILES['user_im']['name'];
+												
+								$nameFile = $this->phone->changeTitle($_FILES["user_im"]["name"]);
+								$tmpFile = $_FILES["user_im"]["tmp_name"];
+								move_uploaded_file($tmpFile, "public/img/user/".$nameFile);
+	
+								if ($this->phone->updateUser($id_user,$Email,$number_phone,$pass,$name,$nameFile ,$acc ) ) {
+									$_SESSION['NotiEditUser']= 1;
+									header("Location: index.php?method=User");
+								}else{
+									echo "<script>alert('Sửa thất bại')</script>";
+								}
+	
+							
+							// if ($this->phone->is_name($name)  == false) {
+							// 	$_SESSION['error_name'] = 1;
+							// }
+	
+							// if ($this->phone->isVietnamesePhoneNumber($phone) != true) {
+							// 	$_SESSION['error_phone'] = 1;
+							// }
+	
+							// foreach ($rs as $key => $value) {
+							// 	if ($value['number_phone'] == $phone) {
+							// 		$_SESSION['error_phone']++;
+							// 	}
+							// }
+	
+							// if ($this->phone->is_email($email) == false) {
+							// 	$_SESSION['error_email'] = 1;
+							// }
+							
+							// foreach ($rs as $key => $value) {
+							// 	if ($value['Email'] == $email) {
+							// 		$_SESSION['error_email']++;
+							// 	}
+							// }
+	
+							// if ($this->phone->checkPass($pass) != true) {
+							// 	$_SESSION['error_Pass'] = 1;
+							// }
+	
+							
+	
+	
+							// if ($_SESSION['error_phone'] >=1 && $_SESSION['error_name'] >= 1 && $_SESSION['error_email']>=1 && $_SESSION['error_Pass']>=1) {
+							// 	header("Location: index.php?method=User");
+							// }
+							
+							
+							
+	
+	
+							
+							
+						}
+					}
+					
+							
 					include_once 'views/editUser.php';
 					break;
+					case 'deltuser':
+						if(isset($_GET['id_user']))
+						{
+							$id_user = $_GET['id_user'];
+							if($this->phone->deletesql("user", "User_id=".$id_user))
+							{
+								$_SESSION['NotiUser']= 1;
+								header("Location: index.php?method=User");
+							}
+							else
+							{
+								echo "<script>alert('Xóa thất bại')</script>";	
+							}
+						}
+						
+
+						break;	
 				default:
 					# code...
 					break;

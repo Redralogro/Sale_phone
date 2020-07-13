@@ -1,4 +1,7 @@
 <div class="container-fluid">
+	<?php 
+
+	?>
 	<div class="row">
 
 		<div class="col-6">

@@ -153,12 +153,19 @@
                                         {
                                             echo $phone1['Name'];
 
-                                        }
-                                        
-                                    }
+                                    
                                      ?></h2>
                                     <div class="product-inner-price">
-                                        <ins>$700.00</ins> <del>$100.00</del>
+                                        <ins>
+                                            <?php 
+                                            echo $phone1['Price'];
+                                            ?>
+                                            <?php 
+                                                }
+                                        
+                                            }
+                                            ?>
+                                        </ins> <del>$100.00</del>
                                     </div>    
                                     
                                     <form action="" class="cart">
