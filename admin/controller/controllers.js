@@ -73,7 +73,10 @@ function Match_password() {
     const VAL = document.getElementById('pass').value;
     const check = document.getElementById('check').value;
     if (check == VAL) {
-        document.getElementById('checkPass').innerHTML = '<i class="fa fa-check-circle" style="color:green;" aria-hidden="true"></i>';
+        if (VAL=='')
+        {
+            document.getElementById('checkPass').innerHTML ='';
+        }else document.getElementById('checkPass').innerHTML = '<i class="fa fa-check-circle" style="color:green;" aria-hidden="true"></i>';
     } else {
         document.getElementById('checkPass').innerHTML = '<p style="color:red;">(*) Mật khẩu  không trùng khớp</p>';
     }
