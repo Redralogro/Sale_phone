@@ -13,7 +13,7 @@
 
 		public function get_Phone()
 		{
-			$sql = "SELECT *FROM phones";
+			$sql = "SELECT *FROM phones ORDER BY phones.Phone_id DESC";
 			$query = mysqli_query($this->conn, $sql);
 			$result = array();
 
@@ -140,7 +140,7 @@
 
 		public function Getdetail_phone()
 		{
-			$sql = "SELECT * FROM detail_phones ";
+			$sql = "SELECT * FROM detail_phones";
 			$query = mysqli_query($this->conn, $sql);
 			$result = array();
 			while ($row =  mysqli_fetch_array($query)) {
@@ -149,6 +149,10 @@
 
 			return $result;
 		}
+
+
+
+
 
 		//Đếm số hàng trả ra
 		public function detail_phone_rows($id)
@@ -183,6 +187,17 @@
 			}
 			
 			
+		}
+
+		public function Orderconfirmation($phone_id, $qty)
+		{
+			$sql = "UPDATE detail_phones SET Quatity = (Quatity - $qty) WHERE Phone_id = $phone_id";
+			$query = mysqli_query($this->conn, $sql);
+			if ($query) {
+				return 1;
+			}else{
+				return 0;
+			}
 		}
 
 		public function del_detailphone($id)
@@ -228,13 +243,7 @@
 				return 0;
 			}
 		}
-		public function deletesql($table, $sql)
-		{
-			$sql = "DELETE FROM {$table} WHERE " . $sql;
-			// _debug($sql);die;
-			mysqli_query($this->conn, $sql) or die(" Lỗi Truy Vấn delete   --- " . mysqli_error($this->conn));
-			return mysqli_affected_rows($this->conn);
-		}
+
 		public function getUSER($username,$password)
 		{
 		 	$sql="SELECT * FROM user WHERE "."Email = '$username' and password = '$password' ";
@@ -247,24 +256,7 @@
         	}
         	return $data;
 		}
-        public function addUSER($Email, $number_phone, $pass, $name, $image, $status)
-		{
-			$sql = "INSERT INTO user(Email, number_phone, Password, Name, Image_user, status) values('$Email', '$number_phone', '$pass', '$name', '$image', '$status')";
-			// $query = mysqli_query($this->conn, $sql);
-			// if ($query) {
-			// 	$last_id = mysqli_insert_id($this->conn);
-			// 	$sql1 = "INSERT INTO user(User_id) values($last_id);";
-			// 	$query1 = mysqli_query($this->conn, $sql1);
-			// 	if ($query1) {
-			// 		return 1;
-			// 	}else{
-			// 		return 0;
-			// 	}
-			// }
-			mysqli_query($this->conn, $sql) or die("Error Query Insert" . mysqli_error($this->conn));
-            return mysqli_insert_id($this->conn);
-			
-		}
+
 		public function getUser1()
 		{
 			$sql="SELECT * FROM user";
@@ -277,16 +269,25 @@
 
 			return $result;
 		}
+        public function deletesql($table, $sql)
+		{
+			$sql = "DELETE FROM {$table} WHERE " . $sql;
+			// _debug($sql);die;
+			mysqli_query($this->conn, $sql) or die(" Lỗi Truy Vấn delete   --- " . mysqli_error($this->conn));
+			return mysqli_affected_rows($this->conn);
+		}
+		public function addUSER($Email, $number_phone, $pass, $name, $image, $status)
+		{
+			$sql = "INSERT INTO user(Email, number_phone, Password, Name, Image_user, status) values('$Email', '$number_phone', '$pass', '$name', '$image', '$status')";
+			mysqli_query($this->conn, $sql) or die("Error Query Insert" . mysqli_error($this->conn));
+            return mysqli_insert_id($this->conn);
+			
+		}
 		function updateUser($id_user,$email,$number_phone,$password,$name,$image,$status)
 		{
 			$sql="UPDATE user
 			SET Email='$email', number_phone='$number_phone',Password= '$password',Name= '$name',Image_user='$image',status='$status'
 			WHERE User_id='$id_user';";
-			$result = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
-			return mysqli_affected_rows($this->conn);
-		}
-		public function updateview($sql)
-		{
 			$result = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
 			return mysqli_affected_rows($this->conn);
 		}
@@ -300,7 +301,7 @@
 
 		public function get_order()
 		{
-        	$sql = "SELECT *FROM order_phone";
+        	$sql = "SELECT * FROM order_phone ORDER BY order_phone.Order_id DESC";
 			$query = mysqli_query($this->conn, $sql);
 			$result = array();
 
@@ -458,34 +459,31 @@
 
 		//Check định dạng mail
 		public function is_email($str) {
-		    return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+			$regex="/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i";
+		    return (preg_match($regex, $str));
 		}
 
 		public function is_name($fullname)
 		{
-			return (!preg_match("/^[a-zA-Z ]*$/",$fullname)) ? FALSE : TRUE;
+			$regex="/^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+(([ ][a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ])?[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]*)*$/";
+			return (preg_match($regex,$fullname));
 		}
 
-		// function isVietnamesePhoneNumber($number) {
-		// 	return (!preg_match("/((09|03|07|08|05)+([0-9]{8})\b)/g",$number)) ? FALSE : TRUE;
+		function isVietnamesePhoneNumber($number) {
+			$regex="/^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$/";
+			return (preg_match($regex,$number));
 		  
-		// }
+		}
 
 		public function checkPass($password)
 		{
-			$uppercase = preg_match('@[A-Z]@', $password);
-			$lowercase = preg_match('@[a-z]@', $password);
-			$number    = preg_match('@[0-9]@', $password);
-			$specialChars = preg_match('@[^\w]@', $password);
-
-			if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
-			   return false;
-			}else{
-			    return true;
-			}
+			$regex="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
+			return (preg_match($regex,$password));
+			
 		}
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 
 		public function CountOrder($month, $year)
 		{
@@ -511,6 +509,83 @@
 			return $count;
 		}
 
+		public function addBanner($nameFile)
+		{
+			$sql = "INSERT INTO banner(image_banner) values('$nameFile')";
+			$query = mysqli_query($this->conn, $sql);
+			if ($query) {
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+
+		public function getBanner()
+		{
+			$sql = "SELECT *from banner ";
+			$query = mysqli_query($this->conn, $sql);
+			$result = array();
+
+			while ($row =  mysqli_fetch_array($query)) {
+				$result[] = $row;
+			}
+
+			return $result;
+		}
+		public function SearchData()
+		{
+			{
+			$search = addslashes($_GET['tukhoa']);
+			$sql = "SELECT *FROM phones where Name like '%$search%'";
+			$query = mysqli_query($this->conn, $sql);
+			$result = array();
+
+			while ($row =  mysqli_fetch_array($query)) {
+				$result[] = $row;
+			}
+
+			return $result;
+		}
+		
+	}
+		public function delBanner($id)
+		{
+			$sql = "DELETE FROM banner WHERE banner_id = $id";
+			$query = mysqli_query($this->conn, $sql);
+			if ($query) {
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+
+		public function getPhone_firm1($id)
+		{
+			$sql = "SELECT  *FROM phones where Firm_id = $id";
+	        $query = mysqli_query($this->conn, $sql);
+	        while ($row =  mysqli_fetch_array($query)) {
+	             $result[] = $row;
+	        }
+
+		    if (!empty($result)) {
+		      return $result;
+		    }else{
+		      return 0;
+		    }
+		}
+
+		public function Del_oder($Order_id)
+		{
+			$sql = "DELETE FROM order_detail WHERE Order_id = $Order_id";
+			$query = mysqli_query($this->conn, $sql);
+			$sql1 = "DELETE FROM order_phone WHERE Order_id  = $Order_id";
+			$query1 = mysqli_query($this->conn, $sql1);
+			if ($query1) {
+				return 1;
+			}else{
+				return 0;
+			}
+		}
 		
 	}
 

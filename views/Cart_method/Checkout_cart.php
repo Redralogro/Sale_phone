@@ -66,7 +66,9 @@ $db= new Database();
 		unset($_SESSION['phone_cart']);
 		unset( $_SESSION['phone_total_price']);
 		unset( $_SESSION['number_phone']);
-		echo "<script>alert('Đặt hàng thành công!');";
-		echo "location.href='../../index.php';</script>";
+		$_SESSION['notiCartSussec'] = 1;
+		header("Location: ../../index.php");
+		
+		
 	}
 ?>

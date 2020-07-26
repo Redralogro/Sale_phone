@@ -1,5 +1,7 @@
 <div class="container-fluid">
 	<h3>Cập nhật điện thoại mới</h3>
+	
+	
 	<form method="POST" enctype="multipart/form-data">
 		<fieldset class="form-group">
 			<label for="exampleInputName">Tên điện thoại</label>
@@ -57,7 +59,7 @@
 			<label for="logo">Ảnh hiện tại</label><br>
 			<img style="width: 200px"  src="public/img/phone/<?php echo $phones['Image'] ?>"><br>
 			<label for="logo">Thay ảnh</label>
-			<input type="file" class="form-control-file" name="logo" id="logo" required="">
+			<input type="file" class="form-control-file" name="logo" id="logo" value="" required="">
 		</fieldset>
 
 		<button type="submit" name="submit" class="btn btn-primary">Sửa</button>

@@ -1,26 +1,4 @@
-<div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li ><a href="index.php?page=home">Home</a></li>
-                        <!-- <li ><a href="index.php?page=shop">Shop page</a></li> -->
-                        <!-- <li><a href="index.php?page=single-product">Single product</a></li> -->
-                        <li ><a href="index.php?page=cart">Cart</a></li>
-                        <li  class="active"><a href="index.php?page=checkout">Checkout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-</div>
+
 
 
 
@@ -29,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Shopping Cart</h2>
+                        <h2>CHECK OUT</h2>
                     </div>
                 </div>
             </div>
@@ -47,7 +25,7 @@
                 <div class="clearfix">
                 </div>
                         <div class="row">
-                            <div class="col-md-8 col-sm-6">
+                            <div class="col-md-12 col-sm-12">
                                 <div class="shippingbox">
                                     
                                     <form action="views/Cart_method/Checkout_cart.php" method="POST" role="form">
@@ -89,7 +67,7 @@
                         <?php
                     }else{
                     ?>
-                    <div class="alert alert-danger col-sm-8">
+                    <div class="alert alert-danger col-sm-12">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <strong>Thông báo!</strong> Giỏ hàng của bạn đang trống
                     <a href="index.php">

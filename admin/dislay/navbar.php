@@ -49,8 +49,8 @@
         </a>
         <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Quản lý danh mục</h6>
-            <a class="collapse-item" href="login.html">Bài viết</a>
+            <h6 class="collapse-header">Quản lý web</h6>
+            <a class="collapse-item" href="index.php?method=banner">Banner</a>
            
           </div>
         </div>

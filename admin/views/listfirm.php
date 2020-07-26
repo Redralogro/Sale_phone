@@ -25,10 +25,20 @@
 		  	unset($_SESSION['NotidelFirm']);
 		}
 
+		if (isset($_SESSION['NotidelFirm2'])) {
+		 	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Xóa thất bại .
+		  </div>";
+		  	unset($_SESSION['NotidelFirm2']);
+		}
+
+		
+
 		  
 	?>
 	<h3 >Danh Sách Hãng điện thoại</h3>
-	<table class="table table-sm table-inverse table-hover">
+	<table class="table table-sm table-inverse table-hover" id="datatable">
 		<thead>
 			<tr>
 				<th>TÊN HÃNG</th>
@@ -52,7 +62,9 @@
 	                            <button type="button" class="btn btn-warning">Xóa</button>
 	                        </a>
 	                  
-	                        
+	                        <a  href="index.php?method=phone_firm&id_firm=<?php echo $value['Firm_id']?>">
+	                            <button type="button" class="btn btn-info">Xem điện thoại</button>
+	                        </a>
 	                    </td>
 				</tr>
 			<?php

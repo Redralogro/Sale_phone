@@ -7,6 +7,8 @@ include_once './login/Login_processing_handle.php';
 // echo $_SESSION['error_customer'];
 // }
 // unset($_SESSION['error_customer']);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,26 +18,32 @@ include_once './login/Login_processing_handle.php';
     <title>Đăng nhập hệ thống</title>
     <link rel="stylesheet" href="login/CSS/login.css">
     <link rel="short-cut icon" href="./login/IMG/images.png" />
+    <!-- <link href="../admin/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../admin/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
 
 </head>
 
 <body>
+
     <div class="container">
         <div class="container-main">
+
             <div class="main">
-                <h2>ĐĂNG NHẬP</h2>
+                            
 
-
-                <div class="layout-main">
-
+                <?php if (isset($_SESSION['notilogin1'])) {
+    echo "<script>alert('Tài khoản hoặc mật khẩu không chính xác!')</script>";
+    unset($_SESSION['notilogin1']);
+} ?>
+                <div class="layout-main" style="bottom: 80px;">
+                    <h2>ĐĂNG NHẬP</h2>
                     <form method="post" action="login.php">
+                        <!-- <h5>Đăng nhập bằng số điện thoại và mật khẩu được cung cấp qua mail</h5> -->
                         <input type="text" name="phoneNumber" placeholder="Nhập số điện thoại ..." required="">
                         <input type="password" name="password" placeholder="Nhập mật khẩu được cung cấp..." required="">
 
                         <input type="submit" name="submit" value="ĐĂNG NHẬP NGAY">
-                        <a href="#" onclick="func()">
-                            <h4>Forget password?</h4>
-                        </a>
+                        
                     </form>
                 </div>
 

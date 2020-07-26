@@ -35,10 +35,11 @@
             <table class="table table-bordered table-hover">
               <h4 style="font-weight: bold; margin-top: 20px;">Chi tiết đơn hàng</h4>
                 <tr>
-                  <th class="text-center" style="width: 120px;">Mã sản phẩm</th>
-                  <th class="text-center" style="width: 80px;">Hình ảnh</th>
-                  <th class="text-center" style="width: 30px;">Số lượng</th>
-                  <th class="text-center" style="width: 50px;">Tổng tiền</th>
+                  <th  style="width: 60px;">Mã sản phẩm</th>
+                  <th style="width: 60px;">Tên Sản phẩm</th>
+                  <th  style="width: 80px;">Hình ảnh</th>
+                  <th  style="width: 30px;">Số lượng</th>
+                  <th  style="width: 50px;">Tổng tiền</th>
                 </tr>
               '
 
@@ -46,11 +47,29 @@
                 <?php 
                 foreach ($Details  as $key => $dtls)
                 {
+                  foreach($Phone as $key => $phone)
+                  {
+                    if($dtls['Phone_id']==$phone['Phone_id'])
+                    {
+                      $img1 = $phone['Image'];
+                    }
+                  }
+
+                  foreach($Phone as $key => $phone)
+                  {
+                    if($dtls['Phone_id']==$phone['Phone_id'])
+                    {
+                      $ten = $phone['Name'];
+                    }
+                  }
                   $message.=' <tr>
-                  <td class="text-center">
+                  <td  style="width: 60px; text-align: center;">
                     '.$dtls['Phone_id'].'
                   </td>
-                  <td class="text-center"><img src="" width="80" 
+                  <td style="width: 60px; text-align: center;">
+                      '.$ten.'
+                  </td>
+                  <td style=" text-align: center;"><img src="http://daisuhuyn.top/admin/public/img/phone/'.$img1.'" width="80" 
                   alt="'; 
                   foreach($Phone as $key => $phone)
                   {
@@ -60,10 +79,10 @@
                     }
                   }
                   $message.='" title="ustora.com"></td>
-                  <td class="text-center">
+                  <td  style="width: 30px; text-align: center;">
                   '.$dtls['Sale_quantity'].'
                   </td>
-                  <td class="text-center">
+                  <td  style="width: 50px; text-align: center;">
                  '.number_format( $dtls['Sale_quantity']* $dtls['Price']).'
                   </td>
                 </tr>';
@@ -112,4 +131,4 @@
 
                 
                 
-            
+          

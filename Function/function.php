@@ -1,5 +1,10 @@
 <?php 
-$conn = mysqli_connect("localhost:3307", "root", "", "phone") or die("Can't connect database!");
+$conn = mysqli_connect("localhost", "root", "", "phone") or die("Can't connect database!");
+if ($conn) {
+                mysqli_set_charset($conn, 'utf8');
+            }else{
+                exit();
+            }
 function to_slug($str) {
     $str = trim(mb_strtolower($str));
     $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
@@ -50,7 +55,7 @@ function addMember($name, $phone,$email){
 function addOrder($Customer_id, $deliverer_id,$today,$total,$addres,$note,$pawws){
     global $conn;
 
-    $sql = "INSERT INTO order_phone(Customer_id,Status_id,Deliverer_id,Create_date,Total_price,Delivery_addres ,Note,password) VALUES('$Customer_id','1',' $deliverer_id','$today','$total','$addres','$note','$pawws')";
+    $sql = "INSERT INTO order_phone(Customer_id,Status_id,Deliverer_id,Create_date,Total_price,Delivery_addres ,Note,password) VALUES('$Customer_id','1','$deliverer_id','$today','$total','$addres','$note','$pawws')";
     $query = mysqli_query($conn, $sql);
 }
 // Lấy thông tin sản phẩm khách hàng muốn mua đưa vào detail order

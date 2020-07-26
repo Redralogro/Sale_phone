@@ -1,26 +1,4 @@
-<div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li ><a href="index.php?page=home">Home</a></li>
-                        <li  ><a href="index.php?page=shop">Shop page</a></li>
-                        <!-- <li class="active"><a href="index.php?page=single-product">Single product</a></li> -->
-                        <li ><a href="index.php?page=cart">Cart</a></li>
-                        <li><a href="index.php?page=checkout">Checkout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-</div>
+
 
 
 <div class="product-big-title-area">
@@ -46,8 +24,16 @@
             <div class="row">
                 <div class="col-md-4">
                 <div class="product-images">
-                                    <div class="product-main-img">
-                                        <img style="height: 500px;" src="admin/public/img/phone/<?php
+                                    <h2 style="text-align: center;"><?php  foreach($phone1 as $key => $phones)
+                                         {
+                                             if ($phones['Phone_id']==$_GET['id'])
+                                             {
+                                                 echo $phones['Name'];
+                                                 
+                                             }
+                                         }?></h2>
+                                    <div class="product-main-img" style="text-align: center;">
+                                        <img  src="admin/public/img/phone/<?php
                                          foreach($phone as $key => $phone)
                                          {
                                              if ($phone['Phone_id']==$_GET['id'])
@@ -117,6 +103,24 @@
                                 <td><?php echo $row['Os']; ?></td>
                             </tr>
                             <tr>
+                                <th >Bộ nhớ trong / Ram</th>
+                                <td>
+                                    <?php  foreach($phone1 as $key => $phones)
+                                         {
+                                             if ($phones['Phone_id']==$_GET['id'])
+                                             {
+                                                foreach ($ram as $key => $rm) {
+                                                    if ($phones['Memory_id'] == $rm['Memory_id']) {
+                                                        echo $rm['Memory'];
+                                                    }
+                                                }
+                                                 
+                                                 
+                                             }
+                                         }?>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th >TỐC ĐỘ CPU</th>
                                 <td><?php echo $row['Cpu_speed']; ?></td>
                             </tr>
@@ -147,44 +151,63 @@
                             
                             <div class="col-sm-6">
                                 <div class="product-inner">
-                                    <h2 class="product-name"><?php 
+                                    <h2 class="product-name" style="text-align: center;"><?php 
                                     foreach($phone1 as $key => $phone1)
                                     { if($phone1['Phone_id']==$_GET['id'])
                                         {
                                             echo $phone1['Name'];
 
-                                    
-                                     ?></h2>
-                                    <div class="product-inner-price">
-                                        <ins>
-                                            <?php 
-                                            echo $phone1['Price'];
-                                            ?>
-                                            <?php 
-                                                }
+                                        }
                                         
-                                            }
-                                            ?>
-                                        </ins> <del>$100.00</del>
+                                    }
+                                     ?></h2>
+                                    <div class="product-inner-price" style="text-align: center;">
+                                        <ins><?php echo number_format($phoneID['Price']);
+                                         ?> VNĐ</ins>
                                     </div>    
                                     
-                                    <form action="" class="cart">
+                                    <form action="" class="cart" style="text-align: center;">
                                         
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="./views/Cart_method/Order.php?id_item=<?php echo $_GET['id']?>">Add to cart</a>
+                                        <a <?php foreach ($details as $key => $value) {
+                                                if ($value['Phone_id'] == $row['Phone_id']) {
+                                                   if ($value['Quatity'] < 1) {
+                                                       echo "style='display: none;'";
+                                                   }
+                                                }} ?> class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="./views/Cart_method/Order.php?id_item=<?php echo $_GET['id']?>">Add to cart</a>
+                                        <a ><?php foreach ($details as $key => $value) {
+                                                if ($value['Phone_id'] == $row['Phone_id']) {
+                                                   if ($value['Quatity'] < 1) {
+                                                       echo "<span style='color: gray; '>Đã bán hết</span>";
+                                                   }
+                                                }} ?></a>
                                     </form>   
                                     
-                                    <div class="product-inner-category">
-                                        <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
-                                    </div> 
                                     
-                                    <div role="tabpanel">
-                                        <ul class="product-tab" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                                    <div class="sale-box" style="border: 1px solid #cecece; border-radius: 10px;">
+                                        <p class="sale-box-title">Khuyến mãi</p>
+                                        <ul>
+                                            <li><p>1. Tặng:&nbsp;<span style="color: #ff0000;">Cường lực&nbsp;-</span>&nbsp;<span style="color: #ff0000;">Ốp lưng&nbsp;- Tai nghe</span> </p></li>
+                                            <li><p>2. Giảm:&nbsp;<span style="color: #ff0000;">100K</span> áp dụng HSSV tại <span style="color: #ff0000;">398 Cầu Giấy</span></p></li>
+                                            <li><p>3. Mua: Dán cường lực 5D chỉ <span style="color: #ff0000;">99K</span></p></li>
+                                            
+                                            
                                         </ul>
-                                        <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                                <h2>Mô tả sản phẩm</h2>  
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
+                        
+                <div class="col-md-12">
+                     <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="home"><br>
+                                                <h1>Mô tả sản phẩm</h1>
+                                                <hr style="border: 1px solid ">
+                                                  
                                                <?php 
                                                foreach ($details as $key => $details)
                                                {
@@ -196,132 +219,64 @@
                                                }
                                                ?>
                                             </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="profile">
-                                                <h2>Reviews</h2>
-                                                <div class="submit-review">
-                                                    <p><label for="name">Name</label> <input name="name" type="text"></p>
-                                                    <p><label for="email">Email</label> <input name="email" type="email"></p>
-                                                    <div class="rating-chooser">
-                                                        <p>Your rating</p>
-
-                                                        <div class="rating-wrap-post">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                    <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
-                                                    <p><input type="submit" value="Submit"></p>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="related-products-wrapper">
-                            <h2 class="related-products-title">Related Products</h2>
-                            <div class="related-products-carousel">
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/product-1.jpg" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
-
-                                    <h2><a href="">Sony Smart TV - 2015</a></h2>
-
-                                    <div class="product-carousel-price">
-                                        <ins>$700.00</ins> <del>$100.00</del>
-                                    </div> 
-                                </div>
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/product-2.jpg" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
-
-                                    <h2><a href="">Apple new mac book 2015 March :P</a></h2>
-                                    <div class="product-carousel-price">
-                                        <ins>$899.00</ins> <del>$999.00</del>
-                                    </div> 
-                                </div>
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/product-3.jpg" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
-
-                                    <h2><a href="">Apple new i phone 6</a></h2>
-
-                                    <div class="product-carousel-price">
-                                        <ins>$400.00</ins> <del>$425.00</del>
-                                    </div>                                 
-                                </div>
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/product-4.jpg" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
-
-                                    <h2><a href="">Sony playstation microsoft</a></h2>
-
-                                    <div class="product-carousel-price">
-                                        <ins>$200.00</ins> <del>$225.00</del>
-                                    </div>                            
-                                </div>
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/product-5.jpg" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
-
-                                    <h2><a href="">Sony Smart Air Condtion</a></h2>
-
-                                    <div class="product-carousel-price">
-                                        <ins>$1200.00</ins> <del>$1355.00</del>
-                                    </div>                                 
-                                </div>
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="img/product-6.jpg" alt="">
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
-
-                                    <h2><a href="">Samsung gallaxy note 4</a></h2>
-
-                                    <div class="product-carousel-price">
-                                        <ins>$400.00</ins>
-                                    </div>                            
-                                </div>                                    
-                            </div>
-                        </div>
-                    </div>                    
                 </div>
             </div>
+            <hr style="border: 1px solid ">
+            <h2>Bình luận</h2>
+            <div id="fb-root"></div>
+            <script>
+                // Xem ở đâu mà nhúng fb lằng nhằng thế
+              window.fbAsyncInit = function() {
+                FB.init({
+                  appId      : '291115715297696',
+                  xfbml      : true,
+                  version    : 'v7.0'
+                });
+                FB.AppEvents.logPageView();
+              };
+
+              (function(d, s, id){
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement(s); js.id = id;
+                 js.src = "https://connect.facebook.net/en_US/sdk.js";
+                 fjs.parentNode.insertBefore(js, fjs);
+               }(document, 'script', 'facebook-jssdk'));
+            </script>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php
+                        function getCurURL() {
+                            // Kiểm tra xem giao thức web là http hay https
+                            if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {
+                                $pageURL = "https://";
+                            } else {
+                              $pageURL = 'http://';
+                            }
+
+                            // Lấy url hiện tại, cái lúc trước bị thiếu cái $_SERVER["REQUEST_URI"];
+                            if (isset($_SERVER["SERVER_PORT"]) && $_SERVER["SERVER_PORT"] != "80") {
+                                $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
+                            } else {
+                                $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+                            }
+                                return $pageURL;
+                            }
+
+                            // Đưa cả hàm getCurURL sang model mà gọi hàm hoặc để ở đây cũng dc
+                        ?>
+
+
+                        <div class="fb-comments" data-href="<?php echo getCurURL(); ?>" data-numposts="5" data-width="100%"></div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
+
         <?php 
          }
          else
@@ -335,4 +290,6 @@
             </div>  
          <?php }
         ?>
+
     </div>
+    

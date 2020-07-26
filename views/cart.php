@@ -1,26 +1,6 @@
-<div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li ><a href="index.php?page=home">Home</a></li>
-                        <!-- <li><a href="index.php?page=shop">Shop page</a></li> -->
-                        <!-- <li><a href="index.php?page=single-product">Single product</a></li> -->
-                        <li class="active" ><a href="index.php?page=cart">Cart</a></li>
-                        <li><a href="index.php?page=checkout">Checkout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-</div>
+
+
+
 
     <div class="product-big-title-area">
         <div class="container">
@@ -44,7 +24,7 @@
                   if (isset($_SESSION['phone_cart']) && !empty($_SESSION['phone_cart'])) {
                    
                   ?>
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <div class="product-content-right">
                         <div class="woocommerce" id="table-x">
                             <form method="post" action="index.php?page=checkout">
@@ -72,7 +52,7 @@
                                             </td>
 
                                             <td class="product-thumbnail">
-                                                <a href="index.php?page=single-product"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="./admin/public/img/phone/<?php echo $product['Image']?>"></a>
+                                                <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="admin/public/img/phone/<?php echo $product['Image']  ?>">
                                             </td>
 
                                             <td class="product-name">
@@ -80,7 +60,7 @@
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount"><?php echo number_format( $product['Price'])?> Đ</span> 
+                                                <span class="amount"><?php echo number_format( $product['Price'])?> VNĐ</span> 
                                             </td>
 
                                             <td class="product-quantity">
@@ -98,7 +78,7 @@
                                                     echo number_format($sum_price);
                                                     $count+= $product['qty'];
 										        ?>
-                                                </span> 
+                                                </span> VNĐ
                                             </td>
                                         </tr>
                                         
@@ -108,12 +88,13 @@
                                     ?>
                                     <tr>
                                             <td class="actions" colspan="6">
-                                                <div class="coupon" style="margin-left: 7%;">
-                                                    <label for="coupon_code">TOTAL:</label>
-                                                    <span class="alert alert-info"><?php echo number_format($_SESSION['phone_total_price']) ." Đ"; ?></span>
+                                                <div  class="coupon" style="margin-left: 7%; margin-top: 15px">
+                                                    <label  for="coupon_code">TOTAL:</label>
+                                                    <span class="alert alert-info"><?php echo number_format($_SESSION['phone_total_price']) ." VNĐ"; ?></span>
                                                 </div>
-                                                <input type="submit" value="Update Cart" name="update_cart" class="button" style="margin-left: 10%;">
-                                                <input type="submit" value="Checkout" name="checkout" class="checkout-button button alt wc-forward" style="float:right;">
+                                                <a href="index.php?page=checkout">
+                                                    <input type="submit" value="Checkout" name="checkout" class="checkout-button button alt wc-forward" style="float:right;">
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -125,7 +106,7 @@
                     <?php
                     }else{
                     ?>
-                    <div class="alert alert-danger col-sm-8">
+                    <div class="alert alert-danger col-sm-12">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <strong>Thông báo!</strong> Giỏ hàng của bạn đang trống
                     <a href="index.php">
@@ -142,3 +123,5 @@
             </div>
         </div>
     </div>
+
+    

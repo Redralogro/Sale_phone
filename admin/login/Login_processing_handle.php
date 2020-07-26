@@ -29,8 +29,8 @@ $db = new phone_m();
                 foreach ($result as $row)
                 {	
                 	$_SESSION['user_id']= $row['User_id'];
-                	$_SESSION['status1']= $row['status'];
                     $_SESSION['user']= $row['Name'];
+                    $_SESSION['status1']= $row['status'];
 
                 };
                 //redirect dashbroad

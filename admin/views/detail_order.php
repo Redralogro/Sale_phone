@@ -27,49 +27,53 @@
 					 	
 					 </td>
 				<tr>
-				<tr>
-					<th>Số điện thoại</th>
-					<td>
-						<?php
+					<tr>
+						<th>Số điện thoại</th>
+						<td>
+							<?php
 							foreach ($CUSTOMER as $key => $value) {
 								if ($ODERPHONE['Customer_id'] ==$value['Customer_id']) {
 									echo $value['Customer_phone'];
 								}	
 							}
-							
-						?></td>
-				<tr>
+
+							?>
+						
+						</td>
+					<tr>
 				<?php  
 					$i = 0;
 					foreach ($ODERDETAIL as $key => $detail) {
 					$i += 1;
 				?>
-				<tr>
-					<th>Sản phẩm <?php echo $i ?></th>
-					<td><?php 
-						foreach ($PHONE as $key => $value1) {
-								if ($detail['Phone_id'] == $value1['Phone_id']) {
-									echo $value1['Name'];
-									//echo $ODERDETAIL['Order_id'];
-								}	
-							}
-					 ?></td>
-				<tr>
-				<tr>
-					<th>Số lượng mua</th>
-					<td>
-						<?php
-							echo $detail['Sale_quantity'];
-						?>
-					</td>
-				</tr>
+
+					<tr>
+						<th>Sản phẩm <?php echo $i ?></th>
+						<td><?php 
+							foreach ($PHONE as $key => $value1) {
+									if ($detail['Phone_id'] == $value1['Phone_id']) {
+										echo $value1['Name'];
+										//echo $ODERDETAIL['Order_id'];
+									}	
+								}
+						 ?></td>
+					<tr>
+					<tr>
+						<th>Số lượng mua</th>
+						<td>
+							<?php
+								echo $detail['Sale_quantity'];
+							?>
+						</td>
+					</tr>
+					<tr>
+						<th>Giá sản phẩm</th>
+						<td><?php echo $detail['Price']; ?></td>
+					<tr>
 				<?php
 					}
 				?>
-				<tr>
-					<th>Giá sản phẩm</th>
-					<td><?php echo $detail['Price']; ?></td>
-				<tr>
+				
 				<tr>
 					<th>Ngày đặt</th>
 					<td><?php echo $ODERPHONE['Create_date']; ?></td>

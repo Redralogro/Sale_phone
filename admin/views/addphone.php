@@ -49,7 +49,7 @@
 		</fieldset>
 		<fieldset class="form-group">
 			<label for="logo">Ảnh</label>
-			<input type="file" class="form-control-file" name="logo" id="logo">
+			<input type="file" class="form-control-file" name="logo" id="logo" required="">
 		</fieldset>
 
 		<button type="submit" name="submit" class="btn btn-primary">Thêm</button>

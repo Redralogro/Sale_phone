@@ -1,7 +1,7 @@
 <?php 
 class Database
 {
-    private $hostname = "localhost:3307";
+    private $hostname = "localhost";
     private $user = "root";
     private $pass = "";
     private $db = "phone";
@@ -14,7 +14,7 @@ class Database
         $this->link = mysqli_connect($this->hostname, $this->user, $this->pass, $this->db) or die("Can't connect db!");
 
         if ($this->link) {
-            mysqli_set_charset($this->link, 'utf-8');
+            mysqli_set_charset($this->link, 'utf8');
         } else {
             exit();
         }
@@ -88,15 +88,8 @@ class Database
         return $data;
 
     }
-    function getPro_Id($id){
-
-		$sql = "SELECT *FROM tbl_product WHERE id = $id";
-		$query = mysqli_query($this->link, $sql);
-		$result = array();
-		$result = mysqli_fetch_array($query);
-
-		return $result;
-    }
+    
+    
        //Insert
        public function insert($table, array $data)
        {
@@ -117,6 +110,122 @@ class Database
                return mysqli_insert_id($this->link);
            }
        }
+
+    public function getBanner()
+    {
+      $sql = "SELECT  *FROM banner order by banner_id DESC LIMIT 3";
+      $query = mysqli_query($this->link, $sql);
+      while ($row =  mysqli_fetch_array($query)) {
+        $result[] = $row;
+      }
+
+      return $result;
+    }
+
+    public function getFirm()
+    {
+      $sql = "SELECT  *FROM firm ";
+      $query = mysqli_query($this->link, $sql);
+      while ($row =  mysqli_fetch_array($query)) {
+        $result[] = $row;
+      }
+
+      return $result;
+    }
+
+    public function getFirmId($id)
+    {
+      $sql = "SELECT  *FROM firm where Firm_id = $id";
+      $query = mysqli_query($this->link, $sql);
+      while ($row =  mysqli_fetch_array($query)) {
+        $result[] = $row;
+      }
+
+      return $result;
+    }
+
+    public function getPhoneFIRM($id)
+    {
+      $sql = "SELECT  *FROM phones where Firm_id = $id";
+      $query = mysqli_query($this->link, $sql);
+      while ($row =  mysqli_fetch_array($query)) {
+        $result[] = $row;
+      }
+
+      if (!empty($result)) {
+        return $result;
+      }else{
+        echo "Không có sản phẩm";
+      }
+    }
+
+    public function getPhoneNew()
+    {
+      $sql = "SELECT  *FROM phones order by Phone_id DESC LIMIT 3";
+      $query = mysqli_query($this->link, $sql);
+      while ($row =  mysqli_fetch_array($query)) {
+        $result[] = $row;
+      }
+
+      return $result;
+    }
+
+    public function getPhoneNewLimit()
+    {
+      $sql = "SELECT  *FROM phones order by Phone_id DESC LIMIT 12";
+      $query = mysqli_query($this->link, $sql);
+      while ($row =  mysqli_fetch_array($query)) {
+        $result[] = $row;
+      }
+
+      return $result;
+    }
+
+    public function getPhone()
+    {
+      $sql = "SELECT  *FROM phones";
+      $query = mysqli_query($this->link, $sql);
+      while ($row =  mysqli_fetch_array($query)) {
+        $result[] = $row;
+      }
+
+      return $result;
+    }
+
+    public function GetRam()
+    {
+      $sql = "SELECT  *FROM memory";
+      $query = mysqli_query($this->link, $sql);
+      while ($row =  mysqli_fetch_array($query)) {
+        $result[] = $row;
+      }
+
+      return $result;
+    }
+    function getphone_Id($id){
+
+      $sql = "SELECT *FROM phones WHERE Phone_id = $id";
+      $query = mysqli_query($this->link, $sql);
+      $result = mysqli_fetch_array($query);
+
+      return $result;
+    }
+
+    public function getPhone_price($price)
+    {
+      $sql = "SELECT * FROM phones WHERE Price <= $price";
+      $query = mysqli_query($this->link, $sql);
+      while ($row =  mysqli_fetch_array($query)) {
+        $result[] = $row;
+      }
+      if (!empty($result)) {
+        return $result;
+      }else{
+        echo "Không có sản phẩm";
+      }
+      
+    }
+
 
 }
 

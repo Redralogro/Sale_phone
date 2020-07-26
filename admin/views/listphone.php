@@ -24,11 +24,21 @@
             unset($_SESSION['NotidelPhone']);
         }
 
+        if (isset($_SESSION['NotidelPhone2'])) {
+            echo "<div class='alert alert-info'>
+            <a class='close' data-dismiss='alert'>&times;</a>
+            <strong>Nhắc nhở!</strong> Xóa thất bại.
+          </div>";
+            unset($_SESSION['NotidelPhone2']);
+        }
+
+        
+
           
     ?>
     <h1>Danh sách điện thoại</h1><a href="index.php?method=addphone"><button class="btn btn-success" type="button">THÊM MỚI</button></a>
     
-    <table class="table table-bordered table-hover">
+    <table class="table table-hover table-responsive" id="datatable">
         <thead>
             <tr>
                 <th>STT</th>
@@ -49,8 +59,8 @@
             ?>  
                 <tr>
                     <td><?php echo $stt ?></td>
-                    <td><?php echo $value['Name']; ?></td>
-                    <td><?php echo $value['Price']; ?></td>
+                    <td ><?php echo $value['Name']; ?></td>
+                    <td><?php echo number_format($value['Price']); ?></td>
                     <td>
                         <?php
                             foreach ($rs_Color as $key => $values) {
@@ -79,7 +89,7 @@
                             }
                         ?>
                     </td>
-                    <td>
+                    <td >
                         <?php
                             foreach ($detailPhone as $key => $vl) {
                                 if ($vl['Phone_id'] == $value['Phone_id']) {
@@ -89,7 +99,7 @@
                         ?>
                             
                     </td>
-                    <td>
+                    <td width="30%">
                         
                         
                         <a href="index.php?method=editphone&id_phone=<?php echo $value['Phone_id'] ?>"><button class="btn btn-info" type="button"><i class="fa fa-edit"></i>SỬA</button></a>
@@ -107,6 +117,9 @@
             ?>
             
         </tbody>
+        <!-- <a href="index.php">
+            <button type="button" class="btn alert-success">Quay lại trang chủ</button>
+        </a> -->
     </table>
 
 </div>

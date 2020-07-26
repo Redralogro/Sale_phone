@@ -8,7 +8,7 @@ $phone=$db->getAllData('phones');
 $order=$db->get_order_id($_SESSION['Order_id']);
 if (!isset($_SESSION['customer'])) {
     header('Location: ./login.php');
-  
+
 }
 ?>
 <!DOCTYPE html>
@@ -34,9 +34,7 @@ if (!isset($_SESSION['customer'])) {
           <p>
           <p>Địa chỉ nhận hàng:<?php foreach ($order as $key => $ord)
           {echo $ord['Delivery_addres'];}?>
-          </p>
-            Đơn hàng của quí khách bao gồm các thông tin sau đây:
-          </p>
+          
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <h4 style="font-weight: bold; margin-top: 20px;">Chi tiết đơn hàng</h4>
@@ -44,6 +42,7 @@ if (!isset($_SESSION['customer'])) {
                 <th class="text-center" style="width: 120px;">Mã sản phẩm</th>
                   <th class="text-center" style="width: 80px;">Hình ảnh</th>
                   <th class="text-center" style="width: 30px;">Số lượng</th>
+                  
                   <th class="text-center" style="width: 50px;">Tổng tiền</th>
                 </tr>
                 <?php  foreach($Det as  $val)
@@ -53,21 +52,35 @@ if (!isset($_SESSION['customer'])) {
                     <?php echo $val['Phone_id']?>
                   </td>
 
-                  <td class="text-center"><img src=" " width="80" alt="<?php 
-                  foreach($phone as $key => $phone)
+                  <td class="text-center"><img src="../admin/public/img/phone/<?php foreach($phone as $key => $phone1)
                   {
-                    if($val['Phone_id']==$phone['Phone_id'])
+                    if($val['Phone_id']==$phone1['Phone_id'])
                     {
-                      echo $phone['Name'];
+                      echo $phone1['Image'];
                     }
-                  }?>" title="Donghochinhhang.com">
-                
+                  } ?>" width="80" alt="<?php 
+                  foreach($phone as $key => $phone1)
+                  {
+                    if($val['Phone_id']==$phone1['Phone_id'])
+                    {
+                      echo $phone1['Name'];
+                    }
+                  }?>" title="">
+                  <br>
+                <?php 
+                  foreach($phone as $key => $phone1)
+                  {
+                    if($val['Phone_id']==$phone1['Phone_id'])
+                    {
+                      echo $phone1['Name'];
+                    }
+                  }?>
                   </td>
-
+                  
                   <td class="text-center">
                   <?php  echo number_format($val['Sale_quantity'])?>
                   </td>
-
+                  
                   <td class="text-center">
                    <?php  echo number_format($val['Sale_quantity']* $val['Price'])?>
                   </td>
@@ -91,8 +104,25 @@ if (!isset($_SESSION['customer'])) {
                   <td colspan="4">
                     Miễn phí.
                   </td>
+
                 </tr>
-                
+                <tr>
+                  <th>Tình trạng</th>
+                  <td colspan="4">
+                    <?php foreach ($order as $key => $ord)
+                      {
+                        if ($ord['Status_id'] == 2) {
+                          echo "Đang giao";
+                        }elseif($ord['Status_id'] == 3){
+                            echo "Đã giao";
+                        }elseif($ord['Status_id'] == 4){
+                            echo "Đã hủy";
+
+                        }
+                      }
+                    ?>
+                  </td>
+                </tr>
                 <tr>
                   <td colspan="5">
                     <p>
@@ -100,16 +130,31 @@ if (!isset($_SESSION['customer'])) {
                     <?php 
                     foreach($order as  $or)
                     {
-                        echo $or['Total_price'];
+                        echo number_format($or['Total_price']) ;
                     }  
                       ?></b></span>
                     </p>
                   </td>
                 </tr>
+
             </table>
           </div>
             </div>
         </div>
+        
+        <form action="" method="POST">
+            <button class="btn btn-warning" type="submit" name="logout">Đăng xuất</button>
+            <?php
+              if (isset($_POST['logout'])) {
+                  unset($_SESSION['customer']);
+                  header('Location: ./login.php');
+                }  
+            ?>
+        </form>
+        
+
+
+
 
     </div>
 </body>

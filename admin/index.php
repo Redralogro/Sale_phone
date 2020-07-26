@@ -21,7 +21,12 @@
   <title>ADMIN</title>
   <link href="public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  
   <link href="public/css/ruang-admin.min.css" rel="stylesheet">
+  <script src="ckeditor/ckeditor.js"></script>
+  <script src="ckfinder/ckfinder.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+     <link href="public/css/addons/datatables2.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -75,6 +80,18 @@
   <script src="public/js/ruang-admin.min.js"></script>
   <script src="public/vendor/chart.js/Chart.min.js"></script>
   <script src="public/js/demo/chart-area-demo.js"></script>  
+  <script src="controller/controller.js"></script>  
+<script type="text/javascript" src="public/js/addons/datatables2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+        });
+
+
+       
+    </script>  
+
 </body>
 
 </html>

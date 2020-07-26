@@ -1,11 +1,7 @@
 <div class="container-fluid">
 	<h3>Update thông tin chi tiết điện thoại</h3>
 	<form  method="POST" enctype="multipart/form-data">
-		<fieldset class="form-group">
-			<label >Mô tả sản phẩm</label>
-			<input type="text" class="form-control" id="" name="Description"placeholder="Nhập mô tả ..." value="<?php echo $detail['Description'] ?>">
-			
-		</fieldset>
+		
 		<fieldset class="form-group">
 			<label >Số lượng</label>
 			<input type="number" class="form-control" name="Quatity" id="" placeholder="Nhập số lượng ..." value="<?php echo $detail['Quatity'] ?>">
@@ -62,8 +58,18 @@
 			
 		</fieldset>
 
-		
+		<fieldset class="form-group">
+			<label >Mô tả sản phẩm</label>
+			<textarea class="form-control ckeditor" id="content" name="Description">
+				<?php echo $detail['Description'] ?>
+			</textarea>
+			
+			
+			<!-- <input type="text" class="form-control" id="content" name="Description"placeholder="Nhập mô tả ..." value="<?php echo $detail['Description'] ?>"> -->
+			
+		</fieldset>
 		
 		<button type="submit" name="OK" class="btn btn-primary">Submit</button>
 	</form>
+
 </div>

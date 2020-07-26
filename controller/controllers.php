@@ -20,15 +20,18 @@ class utility extends Database
             }
             switch ($page) {
                         case 'home':
-                            $result = $this->ult->getAllData('phones');
-                            $detail=$this->ult->execute('SELECT Phone_id,Promotion_price FROM detail_phones');
+                            $result = $this->ult->getPhoneNewLimit();
+                            $detail=$this->ult->execute('SELECT Phone_id,Promotion_price,Quatity FROM detail_phones');
+                            $banner = $this->ult->getBanner();
+                            $firm = $this->ult->getFirm();
+                            $phone = $this->ult->getPhoneNew();
                             include_once 'views/home.php';
                             break;
                         case 'shop':
                             if(isset($_POST['Seacrh']))
                             {
                                 $keyword = $_POST['Seacrh'];
-                                $phone = $this->ult->getdata_where('phones','Name LIKE "%'.$keyword.' %"');
+                                $phone = $this->ult->getdata_where('phones','Name LIKE "%'.$keyword.'%"');
                                 $details = $this->ult->getAllData('detail_phones');
                               
                             }
@@ -38,7 +41,8 @@ class utility extends Database
                         case 'single-product':
                             if (isset($_GET['id'])) {
                                 $id = (int)$_GET['id'];
-        
+                                $ram = $this->ult->GetRam();
+                                $phoneID = $this->ult->getphone_Id($id);
                                 $phone = $this->ult->getAllData('phones');
                                 $phone1 = $this->ult->getAllData('phones');
                                 $row = $this->ult->detail_phone($id);
@@ -53,6 +57,15 @@ class utility extends Database
                         case 'checkout':
                             include_once 'views/checkout.php';
                             break;
+                        case 'phones':
+                            $getfirm = $this->ult->getFirm();
+                            $details = $this->ult->getAllData('detail_phones');
+                            include_once './views/phones.php';
+                            break;
+                        // case 'logout':
+                        //     unset($_SESSION['customer']);
+                        //     header("Location: index.php");
+                        //     break;
                         default:
                             header("Location: ./404/index.php");
                             break;

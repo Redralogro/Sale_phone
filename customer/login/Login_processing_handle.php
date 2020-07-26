@@ -24,7 +24,8 @@ $db = new Database;
             // };
             
 			if (empty($result)) {
-				echo "Số điện thoại không đúng !";
+				$_SESSION['notilogin1'] = 1;
+				header('Location: ./customer.php');
 			}else{
 				foreach($result as $rs)
 				{   $id=$rs["Customer_id"];

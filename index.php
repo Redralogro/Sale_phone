@@ -12,22 +12,24 @@ $db= new Database();
 // } else {
 //     $page = 'home';
 // }
-if (isset($_SESSION['noti_cart'])) {
-   if($_SESSION['noti_cart']==1)
-   {
-       echo "<script> alert  ('Đặt hàng thành công')</script>";
-   }
-   else if($_SESSION['noti_cart']==0)
-   {
-    echo "<script> alert  ('Đặt hàng Thất bại')</script>"; 
-   }
+// if (isset($_SESSION['noti_cart'])) {
+//    if($_SESSION['noti_cart']==1)
+//    {
+//        echo "<script> alert  ('Thêm vào giỏ hàng thành công')</script>";
+//    }
+//    else if($_SESSION['noti_cart']==0)
+//    {
+//     echo "<script> alert  ('Thêm vào giỏ hàng Thất bại')</script>"; 
+//    }
 
-}
-else
-{}
-unset($_SESSION['noti_cart']);
+// }
+// else
+// {}
+// unset($_SESSION['noti_cart']);
 
 ?>
+
+
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -57,6 +59,10 @@ unset($_SESSION['noti_cart']);
     <link rel="stylesheet" href="./public/css/owl.carousel.css">
     <link rel="stylesheet" href="./public/css/style.css">
     <link rel="stylesheet" href="./public/css/responsive.css">
+    <link rel="stylesheet" href="./public/css/mycss.css">
+    <meta property="fb:app_id" content="291115715297696"/>
+    <meta property="fb:admins" content="101535914986572"/>
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -67,8 +73,13 @@ unset($_SESSION['noti_cart']);
 </head>
 
 <body>
-
+    <div id="fb-root"></div>
+  
     <?php include_once './Layout/header.php' ?>
+    
+      
+    
+    
     <!-- End header area -->
 
                   
@@ -76,7 +87,12 @@ unset($_SESSION['noti_cart']);
                     include_once './controller/controllers.php';
                      $utility = new utility();
                      $utility->bodyItems();
+                     if (isset($_GET['phones'])) {
+                            $phone = $_GET['phones'];
+                            
+                    }
 
+                            
                     // if (file_exists('views/'.$page.'.php')) {
                     //     include_once 'views/'.$page.'.php';
                     //  }else{

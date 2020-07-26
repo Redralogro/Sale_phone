@@ -1,12 +1,9 @@
 <div class="container-fluid">
-	<?php 
-
-	?>
 	<div class="row">
 
-		<div class="col-6">
+		<div class="col-md-6">
 			<h3>Thông tin tài khoản</h3>
-			<table class="table table-hover table-inverse">
+			<table class="table table-hover table-inverse table-responsive">
 				<thead>
 					
 				</thead>
@@ -42,7 +39,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-6">
+		<div class="col-md-6">
 			<h3>Ảnh</h3>
 			<img style="width: 300px" src="public/img/user/<?php echo $rs['Image_user'] ?>" alt="">
 		</div>

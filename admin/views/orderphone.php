@@ -1,6 +1,23 @@
 <div class="container-fluid">
 	<h3>Đơn hàng</h3>
 	<?php
+		
+
+
+		if (isset($_SESSION['notiDel']) == 1) {
+		  	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Xóa thành công.
+		  </div>";
+		  	unset($_SESSION['notiDel']);
+		 }elseif (isset($_SESSION['notiDel']) == 2){
+		 	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Xóa không thành công.
+		  </div>";
+		  	unset($_SESSION['notiDel']);
+		}
+
 		if (isset($_SESSION['notiUpdateOrderPhone'])) {
 		  	echo "<div class='alert alert-info'>
 		  	<a class='close' data-dismiss='alert'>&times;</a>
@@ -35,11 +52,27 @@
 		  	unset($_SESSION['notiCancel']);
 		 }  
 
+		 if (isset($_SESSION['notiOKfail'])) {
+		  	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Xác nhận giao đơn hàng thất bại.
+		  </div>";
+		  	unset($_SESSION['notiOKfail']);
+		 }  
+
+		 if (isset($_SESSION['notiOKfail1'])) {
+		  	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Xác nhận giao đơn hàng thất bại.
+		  </div>";
+		  	unset($_SESSION['notiOKfail1']);
+		 }  
+
 		
 
 		  
 	?>
-	<table class="table table-hover table-inverse">
+	<table class="table table-hover table-inverse table-responsive" id="datatable">
 		<thead>
 			<tr>
 				<th>STT</th>
@@ -55,6 +88,9 @@
 		</thead>
 		<tbody>
 			<?php
+				if (!empty($row)) {
+					
+				
 				$stt =0;
 				foreach ($row as $key => $value) {
 				$stt +=1;
@@ -77,7 +113,7 @@
 							
 					</td>
 					<td><?php echo $value['Delivery_addres']; ?></td>
-					<td><?php echo $value['Note']; ?></td>
+					<td style="max-width: 200px"><?php echo $value['Note']; ?></td>
 					<td><?php echo $value['Total_price']; ?></td>
 					<td>
 						<?php
@@ -103,7 +139,7 @@
 							<a href="index.php?method=editOrderPhone&id_OrderPhone=<?php echo $value['Order_id'] ?>">
 								<button class="btn btn-primary">Sửa</button>
 							</a>
-							<a onclick="return comfirm('Bạn có muốn hủy đơn hàng này không?')" href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=Cancel">
+							<a onclick="return confirm('Bạn có muốn hủy đơn hàng này không?')" href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=Cancel">
 								<button class="btn btn-primary">Hủy</button>
 							</a>
 						<?php
@@ -113,23 +149,36 @@
 						<?php
 							if ($value['Status_id'] == 1) {
 						?>
-								<a onclick="return comfirm('Bạn có muốn xác nhận đơn hàng này không?')" href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=Comfirm&name=<?php echo  $value1['Customer_name'];?>&email=<?php echo $email?>">
+								<a onclick="return confirm('Bạn có muốn xác nhận đơn hàng này không?')" href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=Comfirm&name=<?php echo  $value1['Customer_name'];?>&email=<?php echo $email?>">
 									<button class="btn btn-success">Xác nhận đơn hàng</button>
 								</a>
 						<?php
 							}elseif ($value['Status_id'] == 2) {
 						?>
-							<a onclick="return comfirm('Bạn có muốn xác nhận đơn hàng này là đã giao không?')" href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=OK">
+							<a onclick="return confirm('Bạn có muốn xác nhận đơn hàng này là đã giao không?')" href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=OK">
 									<button class="btn btn-success">Xác nhận đã giao</button>
 								</a>
 						<?php
 							}
+
+
 						?>
+						<a onclick="return confirm('Bạn có thực muốn xóa đơn hàng này không?')" <?php if($_SESSION['status1'] != 1){
+						    echo 'style="display: none"';
+						  } ?>  href="index.php?method=ComfirmOrder&id_order=<?php echo $value['Order_id'] ?>&action=Del">
+									<button class="btn btn-warning">Xóa</button>
+								</a>
 						
 					</td>
 				</tr>
 			<?php
-				  }  
+				  } 
+				 }else{
+				 	echo "<div class='alert alert-info'>
+		  	<a class='close' data-dismiss='alert'>&times;</a>
+		  	<strong>Nhắc nhở!</strong> Chưa có đơn hàng.
+		  </div>";
+				 } 
 			?>
 			
 		</tbody>
