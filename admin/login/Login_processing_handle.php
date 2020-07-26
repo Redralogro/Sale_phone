@@ -1,8 +1,8 @@
 <?php 
 
 //include_once 'model/phone_m.php';
-include_once __DIR__.'../../model/phone_m.php';
-$db = new phone_m();
+include_once __DIR__.'/../../model/database.php';
+$db = new Database();
  
 	// Kiểm tra nếu người dùng đã ân nút đăng nhập thì mới xử lý
 	if (isset($_POST["submit"])) {

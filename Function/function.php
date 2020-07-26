@@ -1,5 +1,6 @@
 <?php 
-$conn = mysqli_connect("localhost", "root", "", "phone") or die("Can't connect database!");
+include_once __DIR__.'/../autoload/autoload.php';
+$conn = mysqli_connect($domain, "root", "", "phone") or die("Can't connect database!");
 if ($conn) {
                 mysqli_set_charset($conn, 'utf8');
             }else{

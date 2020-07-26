@@ -1,15 +1,24 @@
 <?php  
-	include_once 'model/phone_m.php';
+	// include_once 'model/phone_m.php';
 	
-	class phone_c extends phone_m
+	// class phone_c extends phone_m
+	// {
+	// 	private $phone;
+
+	// 	function __construct()
+	// 	{
+	// 		$this->phone = new phone_m();
+	// 	}
+	include_once __DIR__.'/../../model/database.php';
+	
+	class phone_c extends Database
 	{
 		private $phone;
 
 		function __construct()
 		{
-			$this->phone = new phone_m();
+			$this->phone = new  Database();
 		}
-
 		
 		public function phone()
 		{
@@ -408,7 +417,7 @@
 
 					if (isset($_GET['id_OrderPhone'])) {
 						$id = $_GET['id_OrderPhone'];
-						$row = $this->phone->get_order_id($id);
+						$row = $this->phone->Adget_order_id($id);
 						if (isset($_POST['OK'])) {
 							$Delivery_addres = $_POST['Delivery_addres'];
 							$Note = $_POST['Note'];
@@ -429,7 +438,7 @@
 					if (isset($_GET['id_Order'])) {
 						$id = $_GET['id_Order'];
 						$detail_order = $this->phone->getOrder_detail();
-						$ODERPHONE = $this->phone->get_order_id($id);
+						$ODERPHONE = $this->phone->Adget_order_id($id);
 						$ODERDETAIL = $this->phone->getOrder_detail_byID($id);
 						$CUSTOMER = $this->phone->get_Customer();
 						$PHONE = $this->phone->get_Phone();

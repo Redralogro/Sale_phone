@@ -15,7 +15,7 @@ include_once './login/Login_processing_handle.php';
 
 <head>
     <meta charset="UTF-8">
-    <title>Đăng nhập hệ thống</title>
+    <title>Ustora Customer</title>
     <link rel="stylesheet" href="login/CSS/login.css">
     <link rel="short-cut icon" href="./login/IMG/images.png" />
     <!-- <link href="../admin/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

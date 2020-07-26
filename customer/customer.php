@@ -31,10 +31,11 @@ if (!isset($_SESSION['customer'])) {
 
             <h3>Xin chào Quý Khách:<?php echo $_SESSION['Customer_name'];?></h3>
           <p>Số điện thoại:<?php echo $_SESSION['customer'];?></p>
-          <p>
-          <p>Địa chỉ nhận hàng:<?php foreach ($order as $key => $ord)
-          {echo $ord['Delivery_addres'];}?>
           
+          <p>Địa chỉ nhận hàng:<?php foreach ($order as $key => $ord)
+          {echo $ord['Delivery_addres'];}?></p>
+          <p> Ghi chú đơn hàng:<?php foreach ($order as $key => $orde)
+          {echo $ord['Note'];}?></p>
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <h4 style="font-weight: bold; margin-top: 20px;">Chi tiết đơn hàng</h4>
@@ -90,7 +91,7 @@ if (!isset($_SESSION['customer'])) {
                 <?php }?>       
                 <tr>
                   <th>Phụ kiện đi kèm</th>
-                    <td colspan="4">Hộp đựng đồng hồ, sổ bảo hành, thẻ bảo hành, giấy chứng nhận, túi đựng sản phẩm
+                    <td colspan="4">Hộp đựng điện thoại, thẻ bảo hành, miếng dán màn hình siêu bền, que chọc sim
                   </td>
                 </tr>
                 <tr>
